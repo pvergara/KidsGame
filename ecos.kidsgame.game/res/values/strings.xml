@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, gameActivity!</string>
+    <string name="app_name">KidsGame: Aprendiendo a leer</string>
+    <string name="iniciar_juego">Iniciar juego</string>
+    <string name="juego_text1">Esto es un JueBo</string>
+
+</resources>
