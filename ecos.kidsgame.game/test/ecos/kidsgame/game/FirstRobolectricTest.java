@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 
-import ecos.kidsgame.game.framework.ActivityHandler;
+import ecos.framework.ActivityHandler;
 import ecos.kidsgame.game.viewmodel.StartGameViewModel;
 
 @RunWith(RobolectricTestRunner.class)

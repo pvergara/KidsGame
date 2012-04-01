@@ -18,7 +18,27 @@
 		<link>
 			<name>test</name>
 			<type>2</type>
-			<location>E:/Users/pvergara/git/git/KidsGame/ecos.kidsgame.game/test</location>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>test/ecos</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>test/ecos/kidsgame</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>test/ecos/kidsgame/game</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>test/ecos/kidsgame/game/FirstRobolectricTest.java</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/ecos.kidsgame.game/test/ecos/kidsgame/game/FirstRobolectricTest.java</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

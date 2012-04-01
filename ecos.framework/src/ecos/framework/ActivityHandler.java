@@ -1,4 +1,4 @@
-package ecos.kidsgame.game.framework;
+package ecos.framework;
 
 import android.app.Activity;
 import android.content.Context;

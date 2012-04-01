@@ -2,9 +2,9 @@ package ecos.kidsgame.game.viewmodel;
 
 import com.google.inject.Inject;
 
+import ecos.framework.ActivityHandler;
 import ecos.kidsgame.game.JuegoActivity;
 import ecos.kidsgame.game.StartGameActivity;
-import ecos.kidsgame.game.framework.ActivityHandler;
 
 public class StartGameViewModel {
     ActivityHandler mActivityHandler;
