@@ -1,7 +1,9 @@
 What do you need to start with this project:
   * Eclipse indigo
   * ADT
-  * Android SDK
+  * Android SDK (nowadays I'm using 2.3 SDK)
   * Obviously git (I suggest use the eclipse plugin -eGit-)
 
 Hope this helps
+
+Tracking: https://www.pivotaltracker.com/projects/516691  
