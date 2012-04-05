@@ -17,8 +17,8 @@ public class FirstRobolectricTest {
     @Test
     public void alInvocarIniciarSiguienteActividadSePideAbrirJuegoActivity() throws Exception {
 	ActivityHandler mockedActivityHandler =  mock(ActivityHandler.class);
-	StartGameViewModel startGameViewModel = new StartGameViewModel(mockedActivityHandler);
-	
+	StartGameViewModel startGameViewModel = new StartGameViewModel();
+	startGameViewModel.setActivityHandlerOnlyForTest(mockedActivityHandler);
 	StartGameActivity currectContext = mock(StartGameActivity.class);
 	startGameViewModel.iniciarSiguienteActividad(currectContext);
 	

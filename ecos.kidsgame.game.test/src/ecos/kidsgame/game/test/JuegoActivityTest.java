@@ -1,13 +1,15 @@
 package ecos.kidsgame.game.test;
 
-import roboguice.test.RoboActivityUnitTestCase;
+import android.app.Instrumentation;
 import android.content.Intent;
+import android.test.ActivityInstrumentationTestCase2;
 import ecos.kidsgame.game.JuegoActivity;
-import ecos.kidsgame.game.KidsGameApplication;
 
-public class JuegoActivityTest extends RoboActivityUnitTestCase<JuegoActivity> {
+public class JuegoActivityTest extends ActivityInstrumentationTestCase2<JuegoActivity> {
 
-    private Intent mIntent= new Intent(Intent.ACTION_MAIN);
+    private Instrumentation mInstrumentation;
+    private JuegoActivity mActivity;
+
     public JuegoActivityTest() {
 	super(JuegoActivity.class);
     }
@@ -15,13 +17,13 @@ public class JuegoActivityTest extends RoboActivityUnitTestCase<JuegoActivity> {
     @Override
     protected void setUp() throws Exception {
 	super.setUp();
+	mInstrumentation = getInstrumentation();
+
+	mActivity = getActivity();
     }
 
     public void testTodosLosElementosDeLaActividadEstanEnSuEstadoInicial() {
-	setApplication( new KidsGameApplication( getInstrumentation().getTargetContext() ) );
-        final JuegoActivity activity = startActivity(mIntent, null, null);
-
-        // Test some things
-        assertNotNull(activity);
+	// Test some things
+	assertNotNull(mActivity);
     }
 }
