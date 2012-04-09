@@ -1,13 +1,10 @@
 package ecos.kidsgame.game.test;
 
-import android.app.Instrumentation;
-import android.content.Intent;
 import android.test.ActivityInstrumentationTestCase2;
 import ecos.kidsgame.game.JuegoActivity;
 
 public class JuegoActivityTest extends ActivityInstrumentationTestCase2<JuegoActivity> {
 
-    private Instrumentation mInstrumentation;
     private JuegoActivity mActivity;
 
     public JuegoActivityTest() {
@@ -17,7 +14,7 @@ public class JuegoActivityTest extends ActivityInstrumentationTestCase2<JuegoAct
     @Override
     protected void setUp() throws Exception {
 	super.setUp();
-	mInstrumentation = getInstrumentation();
+	getInstrumentation();
 
 	mActivity = getActivity();
     }
