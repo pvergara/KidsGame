@@ -1,9 +1,9 @@
 package ecos.kidsgame.game;
 
-import android.app.Activity;
+import roboguice.activity.RoboActivity;
 import android.os.Bundle;
 
-public class JuegoActivity extends Activity {
+public class JuegoActivity extends RoboActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

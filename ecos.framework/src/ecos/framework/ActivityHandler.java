@@ -1,8 +1,8 @@
 package ecos.framework;
 
-import android.app.Activity;
+import roboguice.activity.RoboActivity;
 import android.content.Context;
 
 public interface ActivityHandler {
-    public void showActivity(Context currentContext,Class<? extends Activity> activityToBeShowed);
+    public void showActivity(Context currentContext,Class<? extends RoboActivity> activityToBeShowed);
 }
