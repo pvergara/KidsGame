@@ -14,14 +14,16 @@ import ecos.kidsgame.game.viewmodel.StartGameViewModel;
 @RunWith(RobolectricTestRunner.class)
 public class FirstRobolectricTest {
 
-    @Test
-    public void alInvocarIniciarSiguienteActividadSePideAbrirJuegoActivity() throws Exception {
-	ActivityHandler mockedActivityHandler =  mock(ActivityHandler.class);
-	StartGameViewModel startGameViewModel = new StartGameViewModel();
-	startGameViewModel.setActivityHandlerOnlyForTest(mockedActivityHandler);
-	StartGameActivity currectContext = mock(StartGameActivity.class);
-	startGameViewModel.iniciarSiguienteActividad(currectContext);
-	
-	verify(mockedActivityHandler).showActivity(currectContext, JuegoActivity.class);
-    }
+	@Test
+	public void alInvocarIniciarSiguienteActividadSePideAbrirJuegoActivity()
+			throws Exception {
+		ActivityHandler mockedActivityHandler = mock(ActivityHandler.class);
+		StartGameViewModel startGameViewModel = new StartGameViewModel();
+		startGameViewModel.setActivityHandlerOnlyForTest(mockedActivityHandler);
+		StartGameActivity currectContext = mock(StartGameActivity.class);
+		startGameViewModel.iniciarSiguienteActividad(currectContext);
+
+		verify(mockedActivityHandler).showActivity(currectContext,
+				JuegoActivity.class);
+	}
 }

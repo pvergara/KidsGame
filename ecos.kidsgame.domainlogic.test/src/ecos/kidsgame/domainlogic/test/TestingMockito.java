@@ -12,25 +12,25 @@ import org.junit.Test;
 
 public class TestingMockito {
 
-    @Test
-    public void IsThereAnybodyOutThere() {
-	List<String> mockedList = mock(List.class);
-	mockedList.add("one");
-	mockedList.clear();
+	@Test
+	public void IsThereAnybodyOutThere() {
+		List<String> mockedList = mock(List.class);
+		mockedList.add("one");
+		mockedList.clear();
 
-	verify(mockedList).add("one");
-	verify(mockedList).clear();
-    }
+		verify(mockedList).add("one");
+		verify(mockedList).clear();
+	}
 
-    @Test
-    public void couldIStubSomeMethods()
-    {
-	LinkedList<String> mockedList = mock(LinkedList.class);
-	when(mockedList.get(0)).thenReturn("first");
-	
-	//Obviously that works!!!...but... what can I do?.... I can't see some test method without asserting!!!!
-	assertEquals("first",mockedList.get(0));
-	
-    }
-    
+	@Test
+	public void couldIStubSomeMethods() {
+		LinkedList<String> mockedList = mock(LinkedList.class);
+		when(mockedList.get(0)).thenReturn("first");
+
+		// Obviously that works!!!...but... what can I do?.... I can't see some
+		// test method without asserting!!!!
+		assertEquals("first", mockedList.get(0));
+
+	}
+
 }
