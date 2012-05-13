@@ -1,9 +1,12 @@
 What do you need to start with this project:
   * Eclipse indigo
   * ADT
-  * Android SDK (nowadays I'm using 2.3 SDK)
+  * Android SDK (now I'm using 2.3 SDK)
   * Obviously git (I suggest use the eclipse plugin -eGit-)
+
+Use the whole workspace as the root of the git (in other words, if you have download the whole git project on your local repo, on /home/userName/KidsGame that must be your eclipse workspace)
 
 Hope this helps
 
-Tracking: https://www.pivotaltracker.com/projects/516691  
+Tracking: https://www.pivotaltracker.com/projects/516691
+
