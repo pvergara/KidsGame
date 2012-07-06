@@ -1,8 +1,5 @@
 package ecos.kidsgame.game;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 import android.os.Bundle;
@@ -13,9 +10,9 @@ import android.widget.TextView;
 
 import com.google.inject.Inject;
 
-import ecos.kidsgame.game.viewmodel.BindingAction;
+import ecos.framework.Binding.BindingAction;
+import ecos.framework.Binding.BindingManager;
 import ecos.kidsgame.game.viewmodel.JuegoViewModel;
-import ecos.kidsgame.game.viewmodel.OnChangeListener;
 
 public class JuegoActivity extends RoboActivity {
     @InjectView(R.id.juegoBoton1)
@@ -32,40 +29,31 @@ public class JuegoActivity extends RoboActivity {
 
     @InjectView(R.id.juegoBoton5)
     Button mSilaba5;
-
+    
     @Inject                            
     JuegoViewModel mJuegoViewModel;
 
-	private Map<String,BindingAction> mActions = new HashMap<String, BindingAction>();
+    @Inject                            
+    BindingManager mBindingManager;
+
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.juego);        
         
-        mJuegoViewModel.setOnChangeListener(mChange);
+        mJuegoViewModel.setOnChangeListener(mBindingManager.getOnChangeListener());
         
-        mSilaba1.setOnClickListener(mSilabasOnClick);
-        
-        manageOnChangeFor("silabaCAEnabled",new BindingAction() {
-        		public void fireAction(Object sourceElementValue) {
-        			mSilaba1.setEnabled((Boolean) sourceElementValue);
-    			}
-		});
-
-        
+        mSilaba1.setOnClickListener(mSilabasOnClick);        
         mSilaba2.setOnClickListener(mSilabasOnClick);
         mSilaba3.setOnClickListener(mSilabasOnClick);
         mSilaba4.setOnClickListener(mSilabasOnClick);
         mSilaba5.setOnClickListener(mSilabasOnClick);        
+
+        mBindingManager.manageOnChangeFor("silabaCAEnabled",mBindingActionSilaba1);
+		mBindingManager.manageOnChangeFor("silabaCEEnabled",mBindingActionSilaba2);
+        
     }
-    
-
-	private void manageOnChangeFor(String propertyName, BindingAction bindingAction) {
-		mActions.put(propertyName, bindingAction);
-		
-	}
-
 
 	private OnClickListener mSilabasOnClick = new OnClickListener() {
 		
@@ -74,17 +62,17 @@ public class JuegoActivity extends RoboActivity {
 			mJuegoViewModel.silabaPulsada(silaba.getText().toString());
 		}
 	};
-	
-	private OnChangeListener mChange = new OnChangeListener() {
-		public void onChange(String elementName, Object sourceElementValue)
-		{
-			if(mActions.containsKey(elementName)) {
-				BindingAction action = mActions.get(elementName);
-				action.fireAction(sourceElementValue);
-			}
-			
-		}
-	};
-    
 
+    BindingAction mBindingActionSilaba1 = new BindingAction() {
+		public void fireAction(Object sourceElementValue) {
+			mSilaba1.setEnabled((Boolean) sourceElementValue);
+		}
+    };
+	
+    BindingAction mBindingActionSilaba2 = new BindingAction() {
+		public void fireAction(Object sourceElementValue) {
+			mSilaba2.setEnabled((Boolean) sourceElementValue);
+		}
+    };
+	
 }

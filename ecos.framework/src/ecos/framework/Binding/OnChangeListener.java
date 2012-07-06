@@ -1,4 +1,4 @@
-package ecos.kidsgame.game.viewmodel;
+package ecos.framework.Binding;
 
 public interface OnChangeListener {
 
