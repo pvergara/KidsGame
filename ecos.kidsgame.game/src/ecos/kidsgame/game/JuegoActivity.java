@@ -52,6 +52,9 @@ public class JuegoActivity extends RoboActivity {
 
         mBindingManager.manageOnChangeFor("silabaCAEnabled",mBindingActionSilaba1);
 		mBindingManager.manageOnChangeFor("silabaCEEnabled",mBindingActionSilaba2);
+		mBindingManager.manageOnChangeFor("silabaCIEnabled",mBindingActionSilaba3);
+		mBindingManager.manageOnChangeFor("silabaCOEnabled",mBindingActionSilaba4);
+		mBindingManager.manageOnChangeFor("silabaCUEnabled",mBindingActionSilaba5);
         
     }
 
@@ -72,6 +75,24 @@ public class JuegoActivity extends RoboActivity {
     BindingAction mBindingActionSilaba2 = new BindingAction() {
 		public void fireAction(Object sourceElementValue) {
 			mSilaba2.setEnabled((Boolean) sourceElementValue);
+		}
+    };
+	
+    BindingAction mBindingActionSilaba3 = new BindingAction() {
+		public void fireAction(Object sourceElementValue) {
+			mSilaba3.setEnabled((Boolean) sourceElementValue);
+		}
+    };
+	
+    BindingAction mBindingActionSilaba4 = new BindingAction() {
+		public void fireAction(Object sourceElementValue) {
+			mSilaba4.setEnabled((Boolean) sourceElementValue);
+		}
+    };
+	
+    BindingAction mBindingActionSilaba5 = new BindingAction() {
+		public void fireAction(Object sourceElementValue) {
+			mSilaba5.setEnabled((Boolean) sourceElementValue);
 		}
     };
 	
