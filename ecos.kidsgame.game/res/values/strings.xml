@@ -4,6 +4,11 @@
     <string name="hello">Hello World, gameActivity!</string>
     <string name="app_name">KidsGame: Aprendiendo a leer</string>
     <string name="iniciar_juego">Iniciar juego</string>
-    <string name="juego_text1">Esto es un JueBo</string>
-
+    <string name="juego_text1">Pulsa para escuchar</string>
+    <string name="silabas_ca">CA</string>
+    <string name="silabas_ce">CE</string>
+    <string name="silabas_ci">CI</string>
+    <string name="silabas_co">CO</string>
+    <string name="silabas_cu">CU</string>
+    
 </resources>

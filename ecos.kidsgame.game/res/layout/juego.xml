@@ -2,16 +2,62 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/RelativeLayout1"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-
+    android:layout_height="fill_parent" >
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
         android:text="@string/juego_text1"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
+    <Button
+        android:id="@+id/juegoBoton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="29dp"
+        android:text="@string/silabas_ca" />
+
+    <Button
+        android:id="@+id/juegoBoton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/juegoBoton1"
+        android:layout_centerHorizontal="true"
+        android:text="@string/silabas_ce" />
+
+    <Button
+        android:id="@+id/juegoBoton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/juegoBoton2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="23dp"
+        android:text="@string/silabas_ci" />
+
+    <Button
+        android:id="@+id/juegoBoton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/juegoBoton1"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/silabas_co" />
+
+    <Button
+        android:id="@+id/juegoBoton5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/juegoBoton4"
+        android:layout_alignBottom="@+id/juegoBoton4"
+        android:layout_marginLeft="19dp"
+        android:layout_toRightOf="@+id/juegoBoton2"
+        android:text="@string/silabas_cu" />
+
 </RelativeLayout>
