@@ -6,6 +6,11 @@ import ecos.framework.Binding.OnChangeListener;
 public class JuegoViewModel {
 
 	private static OnChangeListener mChange;
+	
+	public void setOnChangeListener(OnChangeListener changeListener) {
+		mChange = changeListener;	
+	}
+
 	public boolean silabaCAEnabled;
 	public boolean silabaCEEnabled;
 	private boolean silabaCIEnabled;
@@ -54,10 +59,6 @@ public class JuegoViewModel {
 	private void setSilabaCUActiva(boolean esActiva) {
 		silabaCUEnabled = esActiva;
 		mChange.onChange("silabaCUEnabled", silabaCUEnabled);		
-	}
-	
-	public void setOnChangeListener(OnChangeListener changeListener) {
-		mChange = changeListener;	
 	}
 
 }
