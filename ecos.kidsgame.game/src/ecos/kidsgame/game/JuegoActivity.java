@@ -33,8 +33,7 @@ public class JuegoActivity extends RoboActivity {
     @Inject                            
     JuegoViewModel mJuegoViewModel;
 
-    @Inject                            
-    BindingManager mBindingManager;
+	private BindingManager mBindingManager;
 
     
     @Override
@@ -42,7 +41,8 @@ public class JuegoActivity extends RoboActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.juego);        
         
-        mJuegoViewModel.setOnChangeListener(mBindingManager.getOnChangeListener());
+        mJuegoViewModel.init();
+        mBindingManager =  mJuegoViewModel.getBindingManager();
         
         mSilaba1.setOnClickListener(mSilabasOnClick);        
         mSilaba2.setOnClickListener(mSilabasOnClick);
@@ -55,7 +55,7 @@ public class JuegoActivity extends RoboActivity {
 		mBindingManager.manageOnChangeFor("silabaCIEnabled",mBindingActionSilaba3);
 		mBindingManager.manageOnChangeFor("silabaCOEnabled",mBindingActionSilaba4);
 		mBindingManager.manageOnChangeFor("silabaCUEnabled",mBindingActionSilaba5);
-        
+		
     }
 
 	private OnClickListener mSilabasOnClick = new OnClickListener() {

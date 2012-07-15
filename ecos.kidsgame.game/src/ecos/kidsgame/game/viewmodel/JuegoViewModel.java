@@ -1,25 +1,52 @@
 package ecos.kidsgame.game.viewmodel;
 
+import com.google.inject.Inject;
+
+import ecos.framework.Binding.BindingManager;
 import ecos.framework.Binding.OnChangeListener;
+import ecos.framework.Speech.SpeechEngine;
 
 
 public class JuegoViewModel {
 
 	private static OnChangeListener mChange;
 	
-	public void setOnChangeListener(OnChangeListener changeListener) {
-		mChange = changeListener;	
-	}
-
 	public boolean silabaCAEnabled;
 	public boolean silabaCEEnabled;
 	private boolean silabaCIEnabled;
 	private boolean silabaCOEnabled;
 	private boolean silabaCUEnabled;
+    
+    @Inject                            
+    BindingManager mBindingManager;
+    
+	@Inject                            
+	SpeechEngine mSpeechEngine;
 
 	// Command
 	public void silabaPulsada(String silaba) {
+		pronunciarSilaba(silaba);
 		desactivarSilaba(silaba);
+	}
+
+	public void init()
+	{
+		mSpeechEngine.speak("");
+		mChange = mBindingManager.getOnChangeListener();
+	}
+	
+	
+	private void pronunciarSilaba(String silaba)
+	{
+		try
+		{
+			mSpeechEngine.speak(silaba);
+		} catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
 
 	private void desactivarSilaba(String silaba) {
@@ -59,6 +86,11 @@ public class JuegoViewModel {
 	private void setSilabaCUActiva(boolean esActiva) {
 		silabaCUEnabled = esActiva;
 		mChange.onChange("silabaCUEnabled", silabaCUEnabled);		
+	}
+
+	public BindingManager getBindingManager()
+	{
+		return mBindingManager;
 	}
 
 }
