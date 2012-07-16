@@ -29,6 +29,9 @@ public class JuegoActivity extends RoboActivity {
 
     @InjectView(R.id.juegoBoton5)
     Button mSilaba5;
+
+    @InjectView(R.id.commonIniciar)
+    Button mIniciar;
     
     @Inject                            
     JuegoViewModel mJuegoViewModel;
@@ -50,11 +53,15 @@ public class JuegoActivity extends RoboActivity {
         mSilaba4.setOnClickListener(mSilabasOnClick);
         mSilaba5.setOnClickListener(mSilabasOnClick);        
 
+        mIniciar.setOnClickListener(mIniciarOnClick);        
+
         mBindingManager.manageOnChangeFor("silabaCAEnabled",mBindingActionSilaba1);
 		mBindingManager.manageOnChangeFor("silabaCEEnabled",mBindingActionSilaba2);
 		mBindingManager.manageOnChangeFor("silabaCIEnabled",mBindingActionSilaba3);
 		mBindingManager.manageOnChangeFor("silabaCOEnabled",mBindingActionSilaba4);
 		mBindingManager.manageOnChangeFor("silabaCUEnabled",mBindingActionSilaba5);
+
+		mBindingManager.manageOnChangeFor("iniciarEnabled",mBindingActionIniciar);
 		
     }
 
@@ -66,6 +73,13 @@ public class JuegoActivity extends RoboActivity {
 		}
 	};
 
+	private OnClickListener mIniciarOnClick = new OnClickListener() {
+		
+		public void onClick(View v) {
+			mJuegoViewModel.iniciarJuego();
+		}
+	};
+	
     BindingAction mBindingActionSilaba1 = new BindingAction() {
 		public void fireAction(Object sourceElementValue) {
 			mSilaba1.setEnabled((Boolean) sourceElementValue);
@@ -96,4 +110,9 @@ public class JuegoActivity extends RoboActivity {
 		}
     };
 	
+    BindingAction mBindingActionIniciar = new BindingAction() {
+		public void fireAction(Object sourceElementValue) {
+			mIniciar.setEnabled((Boolean) sourceElementValue);
+		}
+    };	
 }

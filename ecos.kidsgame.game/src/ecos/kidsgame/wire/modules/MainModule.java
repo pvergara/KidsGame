@@ -9,6 +9,8 @@ import ecos.framework.Binding.BindingManager;
 import ecos.framework.Binding.CurrentBindingManager;
 import ecos.framework.Speech.SpeechEngine;
 import ecos.framework.Speech.TTSSpeechEngine;
+import ecos.kidsgame.appdomain.Game.CurrentSilabesGame;
+import ecos.kidsgame.appdomain.Game.SilabesGame;
 
 public class MainModule extends AbstractModule implements Module {
 
@@ -18,6 +20,7 @@ public class MainModule extends AbstractModule implements Module {
 		bind(ActivityHandler.class).to(CurrentActivityHandler.class);		
 		bind(BindingManager.class).to(CurrentBindingManager.class);		
 		bind(SpeechEngine.class).to(TTSSpeechEngine.class);		
+		bind(SilabesGame.class).to(CurrentSilabesGame.class);		
 	}
 
 }

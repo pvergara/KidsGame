@@ -23,4 +23,10 @@ public class Fonema {
 
 	return mFonema.equals(((Fonema) o).mFonema);
     }
+
+    @Override
+    public int hashCode() {
+    	return mFonema.hashCode();
+    }
+    
 }

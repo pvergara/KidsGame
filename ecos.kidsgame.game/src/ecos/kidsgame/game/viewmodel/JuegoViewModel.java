@@ -1,10 +1,13 @@
 package ecos.kidsgame.game.viewmodel;
 
+import java.util.Collection;
+
 import com.google.inject.Inject;
 
 import ecos.framework.Binding.BindingManager;
 import ecos.framework.Binding.OnChangeListener;
 import ecos.framework.Speech.SpeechEngine;
+import ecos.kidsgame.appdomain.Game.SilabesGame;
 
 
 public class JuegoViewModel {
@@ -22,20 +25,34 @@ public class JuegoViewModel {
     
 	@Inject                            
 	SpeechEngine mSpeechEngine;
+    
+	@Inject                            
+	SilabesGame mAppGame;
 
+	private Collection<String> mSilabas;
+	
 	// Command
 	public void silabaPulsada(String silaba) {
 		pronunciarSilaba(silaba);
-		desactivarSilaba(silaba);
+		mAppGame.play(silaba);
+		if(mAppGame.accomplished())
+			permitirPasarSiguenteJuego();
 	}
 
 	public void init()
 	{
-		mSpeechEngine.speak("");
+		pronunciarSilaba("");
 		mChange = mBindingManager.getOnChangeListener();
+		
+		mSilabas = mAppGame.getSilabes();
 	}
 	
 	
+	private void permitirPasarSiguenteJuego()
+	{
+		mSpeechEngine.speak("Perfecto, puedes pasar a la siguiente fase");		
+	}
+
 	private void pronunciarSilaba(String silaba)
 	{
 		try
@@ -91,6 +108,19 @@ public class JuegoViewModel {
 	public BindingManager getBindingManager()
 	{
 		return mBindingManager;
+	}
+
+	public void iniciarJuego()
+	{
+		String explicacion = mAppGame.getExplannation();
+		mSpeechEngine.speak(explicacion);
+		
+		mChange.onChange("iniciarEnabled", false);		
+		setSilabaCAActiva(true);		
+		setSilabaCEActiva(true);		
+		setSilabaCIActiva(true);		
+		setSilabaCOActiva(true);		
+		setSilabaCUActiva(true);		
 	}
 
 }

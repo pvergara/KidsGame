@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/juego_text1"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
     <Button
         android:id="@+id/juegoBoton1"
         android:layout_width="wrap_content"
@@ -21,6 +21,7 @@
         android:layout_below="@+id/textView1"
         android:layout_marginLeft="17dp"
         android:layout_marginTop="29dp"
+        android:enabled="false"
         android:text="@string/silabas_ca" />
 
     <Button
@@ -29,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/juegoBoton1"
         android:layout_centerHorizontal="true"
+        android:enabled="false"
         android:text="@string/silabas_ce" />
 
     <Button
@@ -38,6 +40,7 @@
         android:layout_alignBottom="@+id/juegoBoton2"
         android:layout_alignParentRight="true"
         android:layout_marginRight="23dp"
+        android:enabled="false"
         android:text="@string/silabas_ci" />
 
     <Button
@@ -48,6 +51,7 @@
         android:layout_below="@+id/juegoBoton1"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="44dp"
+        android:enabled="false"
         android:text="@string/silabas_co" />
 
     <Button
@@ -58,6 +62,16 @@
         android:layout_alignBottom="@+id/juegoBoton4"
         android:layout_marginLeft="19dp"
         android:layout_toRightOf="@+id/juegoBoton2"
+        android:enabled="false"
         android:text="@string/silabas_cu" />
+
+    <Button
+        android:id="@+id/commonIniciar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="72dp"
+        android:text="@string/iniciar" />
 
 </RelativeLayout>
