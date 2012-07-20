@@ -47,7 +47,7 @@ public class CompletarPalabrasConSilabas {
 
     public String getExplicacion() {
 	CambiarAEstado(EstadoDeLaPrueba.PendienteMasInformacion);
-	return "En esta prueba deber·s elegir las sÌlabas que forman la palabra que te indique";
+	return "En esta prueba deber√°s elegir las s√≠labas que forman la palabra que te indique";
     }
 
     public InformacionPendiente getInformacionPendiente() {

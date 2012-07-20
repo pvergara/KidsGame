@@ -67,7 +67,7 @@ public class GamePlayingTest {
 
 	@Before
 	public void setUp() throws Exception {
-		usuario = generarUsuario("Sofía");
+		usuario = generarUsuario("SofÃ­a");
 		explicacionDelJuego = generarExplicacionDelJuego();
 		explicacionDeLaPruebaDeEscucharLasSilabas = generarExplicacionDeLaPrimeraPrueba();
 		explicacionDeLaPruebaDeSeleccionarLasSilabasIndicadas = generarExplicacionDeLaPruebaDeSeleccionarLasSilabasIndicadas();
@@ -75,11 +75,11 @@ public class GamePlayingTest {
 	}
 
 	private String generarExplicacionDeLaPruebaDeHacerPalabrasConSilabas() {
-		return "En esta prueba deberás elegir las sílabas que forman la palabra que te indique";
+		return "En esta prueba deberÃ¡s elegir las sÃ­labas que forman la palabra que te indique";
 	}
 
 	private String generarExplicacionDeLaPruebaDeSeleccionarLasSilabasIndicadas() {
-		return "En esta prueba irás escuchando sílabas y tendrás que indicar qué sílaba suena cada vez";
+		return "En esta prueba irÃ¡s escuchando sÃ­labas y tendrÃ¡s que indicar quÃ© sÃ­laba suena cada vez";
 	}
 
 	private boolean comprobarSiLaSilabaCoincideConAlgunaDeLasSilabasDeLaColeccionPasada(
@@ -97,12 +97,12 @@ public class GamePlayingTest {
 	}
 
 	private String generarExplicacionDeLaPrimeraPrueba() {
-		return "En esta prueba tienes que pulsar sobre todas las sílabas, al menos una vez para que sepas como se pronuncian";
+		return "En esta prueba tienes que pulsar sobre todas las sÃ­labas, al menos una vez para que sepas como se pronuncian";
 	}
 
 	private String generarExplicacionDelJuego() {
 		return String
-				.format("Hola {0} este es el juego de las sílabas. Tienes que pasar por varias pruebas para terminarlo",
+				.format("Hola {0} este es el juego de las sÃ­labas. Tienes que pasar por varias pruebas para terminarlo",
 						usuario.getNombre());
 	}
 
@@ -289,7 +289,7 @@ public class GamePlayingTest {
 					.jugar(silabaDeLaColeccionQueCorresponde));
 
 			// TODO: IF I+1==SIZE ESTADO FINALIZADO!!!!!!!!!!! (una vez que se
-			// juega la última y se acierta el estado ya debería ser ese)
+			// juega la Ãºltima y se acierta el estado ya deberia ser ese)
 			if (i + 1 == palabras.size())
 				assertEquals(EstadoDeLaPrueba.Finalizada,
 						completarPalabrasConSilabas.getEstado());

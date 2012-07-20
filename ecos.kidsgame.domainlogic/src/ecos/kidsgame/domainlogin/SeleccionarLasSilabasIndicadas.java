@@ -16,7 +16,7 @@ public class SeleccionarLasSilabasIndicadas {
 
     public String getExplicacion() {
 	mEstado = EstadoDeLaPrueba.PendienteMasInformacion;
-	return "En esta prueba ir·s escuchando sÌlabas y tendr·s que indicar quÈ sÌlaba suena cada vez";
+	return "En esta prueba ir√°s escuchando s√≠labas y tendr√°s que indicar qu√© s√≠laba suena cada vez";
     }
 
     public EstadoDeLaPrueba getEstado() {
