@@ -1,51 +1,71 @@
 package ecos.framework.Speech;
 
+import java.util.HashMap;
+
 import android.app.Application;
 import android.content.Context;
+import android.media.AudioManager;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
+import android.speech.tts.TextToSpeech.OnUtteranceCompletedListener;
 import android.util.Log;
 
 import com.google.inject.Inject;
 
-
-public class TTSSpeechEngine implements SpeechEngine, OnInitListener
-{
+public class TTSSpeechEngine implements SpeechEngine, OnInitListener, OnUtteranceCompletedListener{
 	private TextToSpeech mTts;
 	@Inject
-    Application application;
+	Application application;
 	private Context mContext;
-	private boolean initialized=false;
+	private boolean initialized = false;
+	private SpeakFinished mOnSilabeSpeakFinished;
 
-	public void speak(String silaba)
-	{
+	public void speak(String silaba) {
 		init();
-		
-		if(initialized)
-		{
-			mTts.speak(silaba, TextToSpeech.QUEUE_FLUSH, null);
+
+		if (initialized) {
+			HashMap<String, String> myHashAlarm = new HashMap<String, String>();
+		    myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM, String.valueOf(AudioManager.STREAM_ALARM));
+		    myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "SOME MESSAGE");			
+			mTts.speak(silaba, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
 			Log.d("SpeechEngine", "mTts.speak");
+		} else {
+			Log.d("SpeechEngine", "mTts.speak NO ENTRA");
 		}
-		else
-		{
-			Log.d("SpeechEngine", "mTts.speak NO ENTRA");			
-		}
-		
+
 	}
 
-	private void init()
-	{
-		if(!initialized){
+	private void init() {
+		if (!initialized) {
 			mContext = application.getApplicationContext();
 			mTts = new TextToSpeech(mContext, this);
 		}
 
+	}
+
+	public void onInit(int status) {
+		if(status == TextToSpeech.SUCCESS) {
+			Log.d("SpeechEngine", "TextToSpeech.SUCCESS");
+			initialized = true;
+			mTts.setOnUtteranceCompletedListener(this);
+		}
+	}
+
+	public void speak(String silaba, SpeakFinished onSilabeSpeakFinished) {
+		speak(silaba);
+		mOnSilabeSpeakFinished = onSilabeSpeakFinished;
 		
 	}
 
-	public void onInit(int arg0)
-	{
-		initialized = true;		
+	public void onUtteranceCompleted(String utteranceId) {
+		Log.d("SpeechEngine", "OnUtteranceCompletedListener");
+		if(mOnSilabeSpeakFinished!=null)
+		{
+			mOnSilabeSpeakFinished.fireFinished();
+			mOnSilabeSpeakFinished = null;
+		}
+		
 	}
+	
 
 }

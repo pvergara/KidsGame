@@ -29,4 +29,10 @@ public class TinySpeechEngine implements SpeechEngine
 		}
 	}
 
+
+	public void speak(String silaba, SpeakFinished mOnSilabeSpeakFinished) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

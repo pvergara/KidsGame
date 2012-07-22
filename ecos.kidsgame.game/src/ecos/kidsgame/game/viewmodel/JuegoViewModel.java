@@ -6,6 +6,7 @@ import com.google.inject.Inject;
 
 import ecos.framework.Binding.BindingManager;
 import ecos.framework.Binding.OnChangeListener;
+import ecos.framework.Speech.SpeakFinished;
 import ecos.framework.Speech.SpeechEngine;
 import ecos.kidsgame.appdomain.Game.SilabesGame;
 
@@ -30,13 +31,24 @@ public class JuegoViewModel {
 	SilabesGame mAppGame;
 
 	private Collection<String> mSilabas;
+
+	private boolean mAvisado;
+
+	private SpeakFinished mOnSilabeSpeakFinished = new SpeakFinished() {
+		
+		public void fireFinished() {
+			if(mAppGame.accomplished() && !mAvisado)
+			{
+				permitirPasarSiguenteJuego();
+				mAvisado=true;
+			}
+		}
+	};
 	
 	// Command
 	public void silabaPulsada(String silaba) {
-		pronunciarSilaba(silaba);
 		mAppGame.play(silaba);
-		if(mAppGame.accomplished())
-			permitirPasarSiguenteJuego();
+		pronunciarSilaba(silaba);
 	}
 
 	public void init()
@@ -50,14 +62,14 @@ public class JuegoViewModel {
 	
 	private void permitirPasarSiguenteJuego()
 	{
-		mSpeechEngine.speak("Perfecto, puedes pasar a la siguiente fase");		
+		mSpeechEngine.speak("Perfecto, puedes pasar a la siguiente fase.");		
 	}
 
 	private void pronunciarSilaba(String silaba)
 	{
 		try
 		{
-			mSpeechEngine.speak(silaba);
+			mSpeechEngine.speak(silaba,mOnSilabeSpeakFinished);
 		} catch (Exception e)
 		{
 			// TODO Auto-generated catch block
