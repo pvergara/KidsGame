@@ -43,7 +43,6 @@ public class JuegoViewModel {
 	private SpeakFinished mOnExplanationFinished = new SpeakFinished() {
 		
 		public void fireFinished() {
-			mChange.onChange("iniciarEnabled", false);		
 			mostrarSilabas(mSilabas);
 		}
 	};
@@ -108,7 +107,7 @@ public class JuegoViewModel {
 	{
 		String explicacion = mAppGame.getExplannation();
 		mSpeechEngine.speak(explicacion,mOnExplanationFinished);
-//		mostrarSilabas(mSilabas);		
+		mChange.onChange("iniciarEnabled", false);		
 	}
 
 }
