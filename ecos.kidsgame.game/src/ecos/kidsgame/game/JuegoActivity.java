@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.inject.Inject;
 
 import ecos.framework.Binding.BindingAction;
 import ecos.framework.Binding.BindingManager;
+import ecos.kidsgame.appdomain.Game.Dto.SilabaDto;
 import ecos.kidsgame.game.viewmodel.JuegoViewModel;
 
 public class JuegoActivity extends RoboActivity {
@@ -44,7 +44,6 @@ public class JuegoActivity extends RoboActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.juego);        
         
-        mJuegoViewModel.init();
         mBindingManager =  mJuegoViewModel.getBindingManager();
         
         mSilaba1.setOnClickListener(mSilabasOnClick);        
@@ -55,21 +54,28 @@ public class JuegoActivity extends RoboActivity {
 
         mIniciar.setOnClickListener(mIniciarOnClick);        
 
-        mBindingManager.manageOnChangeFor("silabaCAEnabled",mBindingActionSilaba1);
-		mBindingManager.manageOnChangeFor("silabaCEEnabled",mBindingActionSilaba2);
-		mBindingManager.manageOnChangeFor("silabaCIEnabled",mBindingActionSilaba3);
-		mBindingManager.manageOnChangeFor("silabaCOEnabled",mBindingActionSilaba4);
-		mBindingManager.manageOnChangeFor("silabaCUEnabled",mBindingActionSilaba5);
+        mBindingManager.manageOnChangeFor("silaba1Enabled",mBindingActionSilaba1Enabled,this);
+		mBindingManager.manageOnChangeFor("silaba2Enabled",mBindingActionSilaba2Enabled,this);
+		mBindingManager.manageOnChangeFor("silaba3Enabled",mBindingActionSilaba3Enabled,this);
+		mBindingManager.manageOnChangeFor("silaba4Enabled",mBindingActionSilaba4Enabled,this);
+		mBindingManager.manageOnChangeFor("silaba5Enabled",mBindingActionSilaba5Enabled,this);
 
-		mBindingManager.manageOnChangeFor("iniciarEnabled",mBindingActionIniciar);
-		
+        mBindingManager.manageOnChangeFor("silaba1Tag",mBindingActionSilaba1Tag,this);
+		mBindingManager.manageOnChangeFor("silaba2Tag",mBindingActionSilaba2Tag,this);
+		mBindingManager.manageOnChangeFor("silaba3Tag",mBindingActionSilaba3Tag,this);
+		mBindingManager.manageOnChangeFor("silaba4Tag",mBindingActionSilaba4Tag,this);
+		mBindingManager.manageOnChangeFor("silaba5Tag",mBindingActionSilaba5Tag,this);
+
+		mBindingManager.manageOnChangeFor("iniciarEnabled",mBindingActionIniciar,this);
+		        
+        mJuegoViewModel.init();
     }
 
 	private OnClickListener mSilabasOnClick = new OnClickListener() {
 		
 		public void onClick(View v) {
-			TextView silaba = (TextView) v;
-			mJuegoViewModel.silabaPulsada(silaba.getText().toString());
+			Button silaba = (Button) v; 
+			mJuegoViewModel.silabaPulsada(((SilabaDto) silaba.getTag()));
 		}
 	};
 
@@ -80,39 +86,76 @@ public class JuegoActivity extends RoboActivity {
 		}
 	};
 	
-    BindingAction mBindingActionSilaba1 = new BindingAction() {
+    BindingAction mBindingActionSilaba1Enabled = new BindingAction() {
 		public void fireAction(Object sourceElementValue) {
 			mSilaba1.setEnabled((Boolean) sourceElementValue);
 		}
     };
 	
-    BindingAction mBindingActionSilaba2 = new BindingAction() {
+    BindingAction mBindingActionSilaba2Enabled = new BindingAction() {
 		public void fireAction(Object sourceElementValue) {
 			mSilaba2.setEnabled((Boolean) sourceElementValue);
 		}
     };
 	
-    BindingAction mBindingActionSilaba3 = new BindingAction() {
+    BindingAction mBindingActionSilaba3Enabled = new BindingAction() {
 		public void fireAction(Object sourceElementValue) {
 			mSilaba3.setEnabled((Boolean) sourceElementValue);
 		}
     };
 	
-    BindingAction mBindingActionSilaba4 = new BindingAction() {
+    BindingAction mBindingActionSilaba4Enabled = new BindingAction() {
 		public void fireAction(Object sourceElementValue) {
 			mSilaba4.setEnabled((Boolean) sourceElementValue);
 		}
     };
 	
-    BindingAction mBindingActionSilaba5 = new BindingAction() {
+    BindingAction mBindingActionSilaba5Enabled = new BindingAction() {
 		public void fireAction(Object sourceElementValue) {
 			mSilaba5.setEnabled((Boolean) sourceElementValue);
 		}
     };
-	
-    BindingAction mBindingActionIniciar = new BindingAction() {
+
+    BindingAction mBindingActionSilaba1Tag = new BindingAction() {
 		public void fireAction(Object sourceElementValue) {
-			mIniciar.setEnabled((Boolean) sourceElementValue);
+			mSilaba1.setTag(sourceElementValue);
+			mSilaba1.setText(((SilabaDto) sourceElementValue).getTexto());
+		}
+    };
+	
+    BindingAction mBindingActionSilaba2Tag = new BindingAction() {
+		public void fireAction(Object sourceElementValue) {
+			mSilaba2.setTag(sourceElementValue);
+			mSilaba2.setText(((SilabaDto) sourceElementValue).getTexto());
+		}
+    };
+	
+    BindingAction mBindingActionSilaba3Tag = new BindingAction() {
+		public void fireAction(Object sourceElementValue) {
+			mSilaba3.setTag(sourceElementValue);
+			mSilaba3.setText(((SilabaDto) sourceElementValue).getTexto());
+		}
+    };
+	
+    BindingAction mBindingActionSilaba4Tag = new BindingAction() {
+		public void fireAction(Object sourceElementValue) {
+			mSilaba4.setTag(sourceElementValue);
+			mSilaba4.setText(((SilabaDto) sourceElementValue).getTexto());
+		}
+    };
+	
+    BindingAction mBindingActionSilaba5Tag = new BindingAction() {
+		public void fireAction(Object sourceElementValue) {
+			mSilaba5.setTag(sourceElementValue);
+			mSilaba5.setText(((SilabaDto) sourceElementValue).getTexto());
+		}
+    };
+	
+    
+    
+    BindingAction mBindingActionIniciar = new BindingAction() {
+		public void fireAction(final Object sourceElementValue) {
+			mIniciar.setEnabled((Boolean) sourceElementValue);					
 		}
     };	
 }

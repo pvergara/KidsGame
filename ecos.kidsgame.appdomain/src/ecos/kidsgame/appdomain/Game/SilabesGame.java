@@ -1,13 +1,15 @@
 package ecos.kidsgame.appdomain.Game;
 
-import java.util.Collection;
+import java.util.List;
+
+import ecos.kidsgame.appdomain.Game.Dto.SilabaDto;
 
 
 public interface SilabesGame
 {
 
-	Collection<String> getSilabes();
+	List<SilabaDto> getSilabes();
 	String getExplannation();
-	void play(String silabe);
+	void play(SilabaDto silabe);
 	Boolean accomplished();
 }

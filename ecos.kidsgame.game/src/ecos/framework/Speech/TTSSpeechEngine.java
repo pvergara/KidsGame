@@ -52,9 +52,8 @@ public class TTSSpeechEngine implements SpeechEngine, OnInitListener, OnUtteranc
 	}
 
 	public void speak(String silaba, SpeakFinished onSilabeSpeakFinished) {
-		speak(silaba);
 		mOnSilabeSpeakFinished = onSilabeSpeakFinished;
-		
+		speak(silaba);		
 	}
 
 	public void onUtteranceCompleted(String utteranceId) {
