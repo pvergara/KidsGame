@@ -14,6 +14,7 @@ public class TestingMockito {
 
 	@Test
 	public void IsThereAnybodyOutThere() {
+		@SuppressWarnings("unchecked")
 		List<String> mockedList = mock(List.class);
 		mockedList.add("one");
 		mockedList.clear();
@@ -24,6 +25,7 @@ public class TestingMockito {
 
 	@Test
 	public void couldIStubSomeMethods() {
+		@SuppressWarnings("unchecked")
 		LinkedList<String> mockedList = mock(LinkedList.class);
 		when(mockedList.get(0)).thenReturn("first");
 
