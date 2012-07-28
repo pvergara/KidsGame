@@ -14,7 +14,7 @@ import ecos.kidsgame.appdomain.Game.Dto.SilabaDto;
 
 public class JuegoViewModel {
 
-	private static OnChangeListener mChange;
+	private OnChangeListener mChange;
 	
     @Inject                            
     BindingManager mBindingManager;
