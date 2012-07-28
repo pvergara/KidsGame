@@ -12,7 +12,7 @@ import ecos.framework.ActivityHandler;
 import ecos.kidsgame.game.viewmodel.StartGameViewModel;
 
 @RunWith(RobolectricTestRunner.class)
-public class FirstRobolectricTest {
+public class StartGameViewModelTest {
 
 	@Test
 	public void alInvocarIniciarSiguienteActividadSePideAbrirJuegoActivity()
@@ -23,7 +23,7 @@ public class FirstRobolectricTest {
 		StartGameActivity currectContext = mock(StartGameActivity.class);
 		startGameViewModel.iniciarSiguienteActividad(currectContext);
 
-		verify(mockedActivityHandler).showActivity(currectContext,
-				JuegoActivity.class);
+		verify(mockedActivityHandler).
+		showActivity(currectContext,JuegoActivity.class);
 	}
 }
