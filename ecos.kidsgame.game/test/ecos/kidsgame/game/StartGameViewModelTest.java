@@ -11,9 +11,7 @@ import com.xtremelabs.robolectric.RobolectricTestRunner;
 import ecos.framework.ActivityHandler;
 import ecos.kidsgame.game.viewmodel.StartGameViewModel;
 
-@RunWith(RobolectricTestRunner.class)
 public class StartGameViewModelTest {
-
 	@Test
 	public void alInvocarIniciarSiguienteActividadSePideAbrirJuegoActivity()
 			throws Exception {
