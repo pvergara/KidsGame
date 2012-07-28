@@ -4,9 +4,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import com.xtremelabs.robolectric.RobolectricTestRunner;
 
 import ecos.framework.ActivityHandler;
 import ecos.kidsgame.game.viewmodel.StartGameViewModel;
