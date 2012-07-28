@@ -11,5 +11,7 @@
     <string name="silabas_co">CO</string>
     <string name="silabas_cu">CU</string>
     <string name="iniciar">Iniciar</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="repetir">Repetir</string>
     
 </resources>

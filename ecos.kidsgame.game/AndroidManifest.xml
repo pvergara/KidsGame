@@ -20,6 +20,9 @@
         <activity
             android:name=".JuegoActivity"
             android:label="@string/app_name" />
-    </application>
+        <activity
+            android:name=".EncontrarSilabaActivity"
+            android:label="@string/app_name"/>
+        </application>
 
 </manifest>

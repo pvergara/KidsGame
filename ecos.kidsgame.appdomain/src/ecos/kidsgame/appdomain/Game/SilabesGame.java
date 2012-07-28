@@ -12,4 +12,8 @@ public interface SilabesGame
 	String getExplannation();
 	void play(SilabaDto silabe);
 	Boolean accomplished();
+	String getExplannationEncontrar();
+	SilabaDto getSilabaPendiente();
+	Boolean playExplicacion(SilabaDto silabe);
+	Boolean accomplishedEncontrar();
 }

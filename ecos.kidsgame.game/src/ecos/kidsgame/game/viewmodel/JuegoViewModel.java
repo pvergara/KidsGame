@@ -4,12 +4,15 @@ import java.util.List;
 
 import com.google.inject.Inject;
 
+import ecos.framework.ActivityHandler;
 import ecos.framework.Binding.BindingManager;
 import ecos.framework.Binding.OnChangeListener;
 import ecos.framework.Speech.SpeakFinished;
 import ecos.framework.Speech.SpeechEngine;
 import ecos.kidsgame.appdomain.Game.SilabesGame;
 import ecos.kidsgame.appdomain.Game.Dto.SilabaDto;
+import ecos.kidsgame.game.EncontrarSilabaActivity;
+import ecos.kidsgame.game.JuegoActivity;
 
 
 public class JuegoViewModel {
@@ -25,8 +28,21 @@ public class JuegoViewModel {
 	@Inject                            
 	SilabesGame mAppGame;
 
+    @Inject                            
+	ActivityHandler mActivityHandler;
+
 	private List<SilabaDto> mSilabas;
 
+	public void init()
+	{
+		pronunciarSilaba("");
+		mChange = mBindingManager.getOnChangeListener();
+		
+		mSilabas = mAppGame.getSilabes();
+		actualizarSilabas(mSilabas);
+	}
+	
+	
 	private boolean mAvisado;
 
 	private SpeakFinished mOnSilabeSpeakFinished = new SpeakFinished() {
@@ -36,6 +52,8 @@ public class JuegoViewModel {
 			{
 				permitirPasarSiguenteJuego();
 				mAvisado=true;
+				mostrarBotonSiguiente();
+				ocultarBotonIniciar();
 			}
 		}
 	};
@@ -54,19 +72,18 @@ public class JuegoViewModel {
 		}
 	}
 	
+	protected void ocultarBotonIniciar() {
+		mChange.onChange("iniciarVisibility", false);
+	}
+
+	protected void mostrarBotonSiguiente() {
+		mChange.onChange("siguienteVisibility", true);
+	}
+
 	// Command
 	public void silabaPulsada(SilabaDto silaba) {
 		mAppGame.play(silaba);
 		pronunciarSilaba(silaba.getFonema());
-	}
-
-	public void init()
-	{
-		pronunciarSilaba("");
-		mChange = mBindingManager.getOnChangeListener();
-		
-		mSilabas = mAppGame.getSilabes();
-		actualizarSilabas(mSilabas);
 	}
 	
 	
@@ -108,6 +125,11 @@ public class JuegoViewModel {
 		String explicacion = mAppGame.getExplannation();
 		mSpeechEngine.speak(explicacion,mOnExplanationFinished);
 		mChange.onChange("iniciarEnabled", false);		
+	}
+
+	//Command!!!
+	public void siguienteJuego(JuegoActivity currectContext) {
+		mActivityHandler.showActivity(currectContext, EncontrarSilabaActivity.class);
 	}
 
 }

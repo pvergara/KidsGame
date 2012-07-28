@@ -11,17 +11,17 @@ import ecos.kidsgame.domainlogin.Fonema;
 import ecos.kidsgame.domainlogin.JuegoDeSilabas;
 import ecos.kidsgame.domainlogin.PruebaEscucharLasSilabas;
 import ecos.kidsgame.domainlogin.Representacion;
+import ecos.kidsgame.domainlogin.SeleccionarLasSilabasIndicadas;
 import ecos.kidsgame.domainlogin.Silaba;
 import ecos.kidsgame.domainlogin.Usuario;
 
-public class CurrentSilabesGame implements SilabesGame 
-{
+public class CurrentSilabesGame implements SilabesGame {
 
 	private Collection<Silaba> silabas;
 	private PruebaEscucharLasSilabas escucharLasSilabas;
+	private SeleccionarLasSilabasIndicadas encontrarLasSilabas;
 
-	public CurrentSilabesGame()
-	{
+	public CurrentSilabesGame() {
 		Usuario usuario = new Usuario("Sofía");
 		silabas = new ArrayList<Silaba>(Arrays.asList(new Silaba[] {
 				new Silaba(Fonema.desde("ca"), Representacion.desde("Ca")),
@@ -32,37 +32,60 @@ public class CurrentSilabesGame implements SilabesGame
 
 		JuegoDeSilabas juego = new JuegoDeSilabas(usuario, silabas);
 		juego.getExplicacion();
-		escucharLasSilabas = juego
-				.getPruebaEscucharLasSilabas();
+		escucharLasSilabas = juego.getPruebaEscucharLasSilabas();
+		encontrarLasSilabas = juego.getSeleccionarLasSilabasIndicadas();
 	}
 
-	public List<SilabaDto> getSilabes()
-	{
+	public List<SilabaDto> getSilabes() {
 		List<SilabaDto> resultado = new ArrayList<SilabaDto>();
-		for (Silaba silaba : silabas)
-		{
-			SilabaDto silabaDto = new SilabaDto();
-			silabaDto.setFonema(silaba.getFonema().toString());
-			silabaDto.setTexto(silaba.getRepresentacion().toString());
-			resultado.add(silabaDto);
+		for (Silaba silaba : silabas) {
+			resultado.add(generarSilabaDto(silaba));
 		}
 		return resultado;
 	}
 
-	public String getExplannation()
-	{
+	public String getExplannation() {
 		return escucharLasSilabas.getExplicacion();
 	}
 
-	public void play(SilabaDto silabe)
-	{
-		Silaba silaba = new Silaba(Fonema.desde(silabe.getFonema()), Representacion.desde(silabe.getTexto()));
-		escucharLasSilabas.jugar(silaba);		
+	public String getExplannationEncontrar() {
+		return encontrarLasSilabas.getExplicacion();
 	}
 
-	public Boolean accomplished()
-	{		
-		return escucharLasSilabas.getEstado().equals(EstadoDeLaPrueba.Finalizada);
+	public SilabaDto getSilabaPendiente() {
+		Silaba silaba = encontrarLasSilabas.getSilabaPendiente();
+		return generarSilabaDto(silaba);
+
+	}
+
+	private SilabaDto generarSilabaDto(Silaba silaba) {
+		SilabaDto silabaDto = new SilabaDto();
+		silabaDto.setFonema(silaba.getFonema().toString());
+		silabaDto.setTexto(silaba.getRepresentacion().toString());
+		return silabaDto;
+	}
+
+	public void play(SilabaDto silabe) {
+		Silaba silaba = new Silaba(Fonema.desde(silabe.getFonema()),
+				Representacion.desde(silabe.getTexto()));
+		escucharLasSilabas.jugar(silaba);
+	}
+
+	public Boolean accomplished() {
+		return escucharLasSilabas.getEstado().equals(
+				EstadoDeLaPrueba.Finalizada);
+	}
+
+	public Boolean accomplishedEncontrar() {
+		return encontrarLasSilabas.getEstado().equals(
+				EstadoDeLaPrueba.Finalizada);
+	}
+
+	public Boolean playExplicacion(SilabaDto silabe) {
+		Silaba silaba = new Silaba(Fonema.desde(silabe.getFonema()),
+				Representacion.desde(silabe.getTexto()));
+		return encontrarLasSilabas.jugar(silaba);
+
 	}
 
 }
