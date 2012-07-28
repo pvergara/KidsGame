@@ -59,6 +59,7 @@ public class EncontrarSilabaActivity extends RoboActivity {
 		mBindingManager.manageOnChangeFor("silaba4Tag",mBindingActionSilaba4Tag,this);
 		mBindingManager.manageOnChangeFor("silaba5Tag",mBindingActionSilaba5Tag,this);
 
+		mBindingManager.manageOnChangeFor("iniciarEnabled",mBindingActionIniciarEnabled,this);
 		mBindingManager.manageOnChangeFor("iniciarVisibility",mBindingActionIniciarVisibility,this);
 
 		mBindingManager.manageOnChangeFor("repetirVisibility",mBindingActionRepetirVisibility,this);
@@ -78,6 +79,7 @@ public class EncontrarSilabaActivity extends RoboActivity {
         mSilaba4.setOnClickListener(mSilabasOnClick);
         mSilaba5.setOnClickListener(mSilabasOnClick);        
 		
+        mBindingManager.manageOnChangeFor("siguienteVisibility", mBindingActionSiguienteVisibility, this);
 		
         mEncontrarSilabaViewModel.init();
         
@@ -142,6 +144,14 @@ public class EncontrarSilabaActivity extends RoboActivity {
 		}
 	};
 
+	private BindingAction mBindingActionIniciarEnabled= new BindingAction() {
+		
+		public void fireAction(Object sourceElementValue) {
+			mIniciar.setEnabled((Boolean) sourceElementValue);
+			
+		}
+	};
+
 	private BindingAction mBindingActionRepetirVisibility = new BindingAction() {
 		
 		public void fireAction(Object sourceElementValue) {
@@ -150,6 +160,14 @@ public class EncontrarSilabaActivity extends RoboActivity {
 		}
 	};
 
+
+	private BindingAction mBindingActionSiguienteVisibility = new BindingAction() {
+		
+		public void fireAction(Object sourceElementValue) {
+			mSiguiente.setVisibility(convertirBoleanAVisbility((Boolean) sourceElementValue));
+			
+		}
+	};
 	private int convertirBoleanAVisbility(Boolean visible) {
 		
 		return visible?View.VISIBLE:View.GONE;

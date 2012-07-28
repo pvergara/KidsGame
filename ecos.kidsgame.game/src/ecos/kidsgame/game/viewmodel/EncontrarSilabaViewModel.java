@@ -37,6 +37,9 @@ public class EncontrarSilabaViewModel {
 		public void fireFinished() {
 			if (mAppGame.accomplishedEncontrar()) {
 				mSpeechEngine.speak("Perfecto. Puedes pasar a la siguiente prueba.");
+				ocultarIniciar();
+				mostrarSiguiente();
+				ocultarRepetir();
 			} else {
 				mSilabaPendiente = mAppGame.getSilabaPendiente();
 				pronunciarSilabaSeleccionada();
@@ -62,6 +65,15 @@ public class EncontrarSilabaViewModel {
 		mSilabas = mAppGame.getSilabes();
 		mSilabaPendiente = mAppGame.getSilabaPendiente();
 		actualizarSilabas(mSilabas);
+	}
+
+	protected void ocultarRepetir() {
+		mChange.onChange("repetirVisibility", false);
+		
+	}
+
+	protected void mostrarSiguiente() {
+		mChange.onChange("siguienteVisibility", true);
 	}
 
 	private void mostrarRepetir() {
@@ -108,7 +120,12 @@ public class EncontrarSilabaViewModel {
 	public void iniciar() {
 		mSpeechEngine.speak(mAppGame.getExplannationEncontrar(),
 				mOnExplannationFinished);
-		ocultarIniciar();
+		desactivarIniciar();
+
+	}
+
+	private void desactivarIniciar() {
+		mChange.onChange("iniciarEnabled", false);
 
 	}
 

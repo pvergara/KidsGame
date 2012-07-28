@@ -2,17 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
+    
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/juego_text1"
+        android:text="@string/encontrar_text1"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-
 
     <Button
         android:id="@+id/juegoBoton1"
