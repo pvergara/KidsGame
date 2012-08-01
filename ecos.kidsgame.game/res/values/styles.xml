@@ -1,0 +1,6 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <style name="button" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/roundedbutton</item>
+        <item name="android:minWidth">50dp</item>
+    </style>
+</resources>
