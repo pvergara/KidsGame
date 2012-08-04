@@ -14,5 +14,6 @@
     <string name="siguiente">Siguiente</string>
     <string name="repetir">Repetir</string>
     <string name="encontrar_text1">Escucha y encuentra</string>
+    <string name="grupo1">LA,LE,LI,LO,LU</string>
     
 </resources>
