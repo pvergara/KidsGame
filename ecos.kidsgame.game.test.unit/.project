@@ -36,6 +36,11 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
+			<name>test/ecos/kidsgame/game/JuegoViewModelTest.java</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/ecos.kidsgame.game/test/ecos/kidsgame/game/JuegoViewModelTest.java</locationURI>
+		</link>
+		<link>
 			<name>test/ecos/kidsgame/game/StartGameViewModelTest.java</name>
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/ecos.kidsgame.game/test/ecos/kidsgame/game/StartGameViewModelTest.java</locationURI>

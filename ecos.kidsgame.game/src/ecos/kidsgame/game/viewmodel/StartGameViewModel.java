@@ -12,7 +12,7 @@ public class StartGameViewModel {
     @Inject                            
 	public ActivityHandler mActivityHandler;
     @Inject                            
-	public SpeechEngine mSpeechEngine;
+	public SpeechEngine speechEngine;
 
 //	public void setActivityHandlerOnlyForTest(ActivityHandler ActivityHandler) {
 //		mActivityHandler = ActivityHandler;
@@ -24,7 +24,7 @@ public class StartGameViewModel {
 	}
 
 	public void init() {
-		mSpeechEngine.tryInit();
+		speechEngine.tryInit();
 	}
 
 }

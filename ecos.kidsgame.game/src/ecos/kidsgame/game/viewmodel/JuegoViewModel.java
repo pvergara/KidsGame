@@ -20,13 +20,13 @@ public class JuegoViewModel {
 	private OnChangeListener mChange;
 	
     @Inject                            
-    BindingManager mBindingManager;
+    public BindingManager bindingManager;
     
 	@Inject                            
-	SpeechEngine mSpeechEngine;
+	public SpeechEngine speechEngine;
     
 	@Inject                            
-	SilabesGame mAppGame;
+	public SilabesGame appGame;
 
     @Inject                            
 	ActivityHandler mActivityHandler;
@@ -35,9 +35,9 @@ public class JuegoViewModel {
 
 	public void init()
 	{
-		mChange = mBindingManager.getOnChangeListener();
+		mChange = bindingManager.getOnChangeListener();
 		
-		mSilabas = mAppGame.getSilabes();
+		mSilabas = appGame.getSilabes();
 		actualizarSilabas(mSilabas);
 	}
 	
@@ -47,7 +47,7 @@ public class JuegoViewModel {
 	private SpeakFinished mOnSilabeSpeakFinished = new SpeakFinished() {
 		
 		public void fireFinished() {
-			if(mAppGame.accomplished() && !mAvisado)
+			if(appGame.accomplished() && !mAvisado)
 			{
 				permitirPasarSiguenteJuego();
 				mAvisado=true;
@@ -81,7 +81,7 @@ public class JuegoViewModel {
 
 	// Command
 	public void silabaPulsada(SilabaDto silaba) {
-		mAppGame.play(silaba);
+		appGame.play(silaba);
 		pronunciarSilaba(silaba.getFonema());
 	}
 	
@@ -97,14 +97,14 @@ public class JuegoViewModel {
 
 	private void permitirPasarSiguenteJuego()
 	{
-		mSpeechEngine.speak("Perfecto, puedes pasar a la siguiente fase.");		
+		speechEngine.speak("Perfecto, puedes pasar a la siguiente fase.");		
 	}
 
 	private void pronunciarSilaba(String silaba)
 	{
 		try
 		{
-			mSpeechEngine.speak(silaba,mOnSilabeSpeakFinished);
+			speechEngine.speak(silaba,mOnSilabeSpeakFinished);
 		} catch (Exception e)
 		{
 			// TODO Auto-generated catch block
@@ -116,13 +116,13 @@ public class JuegoViewModel {
 
 	public BindingManager getBindingManager()
 	{
-		return mBindingManager;
+		return bindingManager;
 	}
 
 	public void iniciarJuego()
 	{
-		String explicacion = mAppGame.getExplannation();
-		mSpeechEngine.speak(explicacion,mOnExplanationFinished);
+		String explicacion = appGame.getExplannation();
+		speechEngine.speak(explicacion,mOnExplanationFinished);
 		mChange.onChange("iniciarEnabled", false);		
 	}
 
