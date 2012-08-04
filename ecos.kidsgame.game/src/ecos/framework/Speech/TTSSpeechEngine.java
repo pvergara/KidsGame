@@ -22,7 +22,6 @@ public class TTSSpeechEngine implements SpeechEngine, OnInitListener, OnUtteranc
 
 	public void speak(String silaba) {
 		init();
-
 		if (initialized) {
 			HashMap<String, String> myHashAlarm = new HashMap<String, String>();
 		    myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM, String.valueOf(AudioManager.STREAM_ALARM));
@@ -64,6 +63,11 @@ public class TTSSpeechEngine implements SpeechEngine, OnInitListener, OnUtteranc
 			mOnSilabeSpeakFinished = null;
 		}
 		
+	}
+
+
+	public void tryInit() {
+		init();
 	}
 	
 

@@ -35,7 +35,6 @@ public class JuegoViewModel {
 
 	public void init()
 	{
-		pronunciarSilaba("");
 		mChange = mBindingManager.getOnChangeListener();
 		
 		mSilabas = mAppGame.getSilabes();

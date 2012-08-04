@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.google.inject.Inject;
 
+import ecos.framework.Speech.SpeechEngine;
 import ecos.kidsgame.game.viewmodel.StartGameViewModel;
 
 public class StartGameActivity extends RoboActivity {
@@ -17,6 +18,8 @@ public class StartGameActivity extends RoboActivity {
     Button mIniciar;
     @Inject                            
     StartGameViewModel mStartGameActivityViewModel;
+    @Inject                            
+    SpeechEngine mSpeechEngine;
 	
     
     private OnClickListener mIniciarOnClick = new OnClickListener() {
@@ -30,7 +33,10 @@ public class StartGameActivity extends RoboActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
         mIniciar.setOnClickListener(mIniciarOnClick);
+        
+        mStartGameActivityViewModel.init();
     }    
     
     public void siguienteActividad() {

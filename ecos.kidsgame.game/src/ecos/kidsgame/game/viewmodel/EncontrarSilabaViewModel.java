@@ -30,13 +30,12 @@ public class EncontrarSilabaViewModel {
 
 	private List<SilabaDto> mSilabas;
 
-	private SpeakFinished mOnSilabeSpeakFinished;
-
 	private SpeakFinished mOnSilabaCorrectaFinished = new SpeakFinished() {
 
 		public void fireFinished() {
 			if (mAppGame.accomplishedEncontrar()) {
-				mSpeechEngine.speak("Perfecto. Puedes pasar a la siguiente prueba.");
+				mSpeechEngine
+						.speak("Perfecto. Puedes pasar a la siguiente prueba.");
 				ocultarIniciar();
 				mostrarSiguiente();
 				ocultarRepetir();
@@ -59,7 +58,6 @@ public class EncontrarSilabaViewModel {
 	private SilabaDto mSilabaPendiente;
 
 	public void init() {
-		pronunciarSilaba("");
 		mChange = mBindingManager.getOnChangeListener();
 
 		mSilabas = mAppGame.getSilabes();
@@ -69,7 +67,7 @@ public class EncontrarSilabaViewModel {
 
 	protected void ocultarRepetir() {
 		mChange.onChange("repetirVisibility", false);
-		
+
 	}
 
 	protected void mostrarSiguiente() {
@@ -100,16 +98,6 @@ public class EncontrarSilabaViewModel {
 			mChange.onChange(elementName, silaba);
 			i++;
 		}
-	}
-
-	private void pronunciarSilaba(String silaba) {
-		try {
-			mSpeechEngine.speak(silaba, mOnSilabeSpeakFinished);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 
 	public BindingManager getBindingManager() {

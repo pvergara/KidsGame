@@ -10,15 +10,13 @@ import ecos.kidsgame.game.viewmodel.StartGameViewModel;
 
 public class StartGameViewModelTest {
 	@Test
-	public void alInvocarIniciarSiguienteActividadSePideAbrirJuegoActivity()
-			throws Exception {
+	public void alInvocarIniciarSiguienteActividadSePideAbrirJuegoActivity() throws Exception {
 		ActivityHandler mockedActivityHandler = mock(ActivityHandler.class);
 		StartGameViewModel startGameViewModel = new StartGameViewModel();
-		startGameViewModel.setActivityHandlerOnlyForTest(mockedActivityHandler);
+		startGameViewModel.mActivityHandler = (mockedActivityHandler);
 		StartGameActivity currectContext = mock(StartGameActivity.class);
 		startGameViewModel.iniciarSiguienteActividad(currectContext);
 
-		verify(mockedActivityHandler).
-		showActivity(currectContext,JuegoActivity.class);
+		verify(mockedActivityHandler).showActivity(currectContext, JuegoActivity.class);
 	}
 }

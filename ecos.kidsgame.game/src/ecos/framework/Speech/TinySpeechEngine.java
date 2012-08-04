@@ -35,4 +35,10 @@ public class TinySpeechEngine implements SpeechEngine
 		
 	}
 
+
+	public void tryInit() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
