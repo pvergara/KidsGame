@@ -2,6 +2,7 @@ package ecos.kidsgame.wire.modules;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Module;
+import com.google.inject.Singleton;
 
 import ecos.framework.ActivityHandler;
 import ecos.framework.CurrentActivityHandler;
@@ -19,8 +20,8 @@ public class MainModule extends AbstractModule implements Module {
 	protected void configure() {
 		bind(ActivityHandler.class).to(CurrentActivityHandler.class);		
 		bind(BindingManager.class).to(CurrentBindingManager.class);		
-		bind(SpeechEngine.class).to(TTSSpeechEngine.class);		
-		bind(SilabesGame.class).to(CurrentSilabesGame.class);		
+		bind(SpeechEngine.class).to(TTSSpeechEngine.class).in(Singleton.class);		
+		bind(SilabesGame.class).to(CurrentSilabesGame.class).in(Singleton.class);		
 	}
 
 }
