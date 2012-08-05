@@ -14,16 +14,16 @@ import org.junit.Test;
 
 import ecos.kidsgame.domainlogic.test.objectModels.FonemaOM;
 import ecos.kidsgame.domainlogic.test.objectModels.SilabaOM;
-import ecos.kidsgame.domainlogin.CompletarPalabrasConSilabas;
 import ecos.kidsgame.domainlogin.EstadoDeLaPrueba;
 import ecos.kidsgame.domainlogin.EstadoDelJuego;
 import ecos.kidsgame.domainlogin.InformacionPendiente;
-import ecos.kidsgame.domainlogin.JuegoDeSilabas;
 import ecos.kidsgame.domainlogin.Palabra;
-import ecos.kidsgame.domainlogin.PruebaEscucharLasSilabas;
-import ecos.kidsgame.domainlogin.SeleccionarLasSilabasIndicadas;
 import ecos.kidsgame.domainlogin.Silaba;
 import ecos.kidsgame.domainlogin.Usuario;
+import ecos.kidsgame.domainlogin.challenge.PruebaCompletarPalabrasConSilabas;
+import ecos.kidsgame.domainlogin.challenge.PruebaEscucharLasSilabas;
+import ecos.kidsgame.domainlogin.challenge.PruebaSeleccionarLasSilabasIndicadas;
+import ecos.kidsgame.domainlogin.challenge.PruebasDelJuego;
 
 public class GamePlayingTest {
 
@@ -145,7 +145,7 @@ public class GamePlayingTest {
 	@Test
 	public void comoEmpezarElJuegoDeLasSilabas() {
 
-		JuegoDeSilabas juego = new JuegoDeSilabas(usuario, silabas);
+		PruebasDelJuego juego = new PruebasDelJuego(usuario, silabas);
 
 		assertEquals(EstadoDelJuego.Inicial, juego.getEstado());
 		assertEquals(explicacionDelJuego, juego.getExplicacion());
@@ -154,7 +154,7 @@ public class GamePlayingTest {
 
 	@Test
 	public void comoIniciarLaPrimeraPrueba() {
-		JuegoDeSilabas juego = new JuegoDeSilabas(usuario, silabas);
+		PruebasDelJuego juego = new PruebasDelJuego(usuario, silabas);
 
 		juego.getExplicacion();
 		assertEquals(EstadoDelJuego.EnPrueba, juego.getEstado());
@@ -170,7 +170,7 @@ public class GamePlayingTest {
 
 	@Test
 	public void comoJugarALaPrimeraPrueba() {
-		JuegoDeSilabas juego = new JuegoDeSilabas(usuario, silabas);
+		PruebasDelJuego juego = new PruebasDelJuego(usuario, silabas);
 
 		PruebaEscucharLasSilabas escucharLasSilabas = juego
 				.getPruebaEscucharLasSilabas();
@@ -182,8 +182,8 @@ public class GamePlayingTest {
 
 	@Test
 	public void comoIniciarLaSegundaPrueba() {
-		JuegoDeSilabas juego = new JuegoDeSilabas(usuario, silabas);
-		SeleccionarLasSilabasIndicadas seleccionarLasSilabas = juego
+		PruebasDelJuego juego = new PruebasDelJuego(usuario, silabas);
+		PruebaSeleccionarLasSilabasIndicadas seleccionarLasSilabas = juego
 				.getSeleccionarLasSilabasIndicadas();
 
 		assertEquals(EstadoDeLaPrueba.Inicial,
@@ -196,8 +196,8 @@ public class GamePlayingTest {
 
 	@Test
 	public void comoJugarALaSegundaPrueba() {
-		JuegoDeSilabas juego = new JuegoDeSilabas(usuario, silabas);
-		SeleccionarLasSilabasIndicadas seleccionarLasSilabas = juego
+		PruebasDelJuego juego = new PruebasDelJuego(usuario, silabas);
+		PruebaSeleccionarLasSilabasIndicadas seleccionarLasSilabas = juego
 				.getSeleccionarLasSilabasIndicadas();
 
 		Silaba silaba = seleccionarLasSilabas.getSilabaPendiente();
@@ -236,8 +236,8 @@ public class GamePlayingTest {
 
 	@Test
 	public void comoIniciarLaTerceraPrueba() {
-		JuegoDeSilabas juego = new JuegoDeSilabas(usuario, silabas);
-		CompletarPalabrasConSilabas completarPalabrasConSilabas = juego
+		PruebasDelJuego juego = new PruebasDelJuego(usuario, silabas);
+		PruebaCompletarPalabrasConSilabas completarPalabrasConSilabas = juego
 				.getCompletarPalabrasConSilabas(palabras);
 
 		assertEquals(EstadoDeLaPrueba.Inicial,
@@ -250,11 +250,11 @@ public class GamePlayingTest {
 
 	@Test
 	public void comoJugarALaTerceraPrueba() {
-		JuegoDeSilabas juego = new JuegoDeSilabas(usuario, silabas);
+		PruebasDelJuego juego = new PruebasDelJuego(usuario, silabas);
 
 		Collection<Palabra> palabrasParametro = copy(palabras);
 
-		CompletarPalabrasConSilabas completarPalabrasConSilabas = juego
+		PruebaCompletarPalabrasConSilabas completarPalabrasConSilabas = juego
 				.getCompletarPalabrasConSilabas(palabrasParametro);
 
 		for (int i = 0; i < palabras.size(); i++) {
