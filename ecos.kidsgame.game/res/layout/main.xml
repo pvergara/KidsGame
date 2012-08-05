@@ -17,77 +17,156 @@
             android:orientation="vertical" >
 
             <RadioButton
-                android:id="@+id/radio0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/grupo1" />
-
-            <RadioButton
                 android:id="@+id/radio1"
+                android:onClick="seleccionarGrupo"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/grupo1" />
 
             <RadioButton
                 android:id="@+id/radio2"
+                android:onClick="seleccionarGrupo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/grupo1" />
 
             <RadioButton
                 android:id="@+id/radio3"
+                android:onClick="seleccionarGrupo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:text="@string/grupo1" />
 
             <RadioButton
                 android:id="@+id/radio4"
+                android:onClick="seleccionarGrupo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/grupo1" />
 
             <RadioButton
                 android:id="@+id/radio5"
+                android:onClick="seleccionarGrupo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/grupo1" />
 
             <RadioButton
                 android:id="@+id/radio6"
+                android:onClick="seleccionarGrupo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:text="@string/grupo1" />
 
             <RadioButton
                 android:id="@+id/radio7"
+                android:onClick="seleccionarGrupo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/grupo1" />
 
             <RadioButton
                 android:id="@+id/radio8"
+                android:onClick="seleccionarGrupo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/grupo1" />
 
             <RadioButton
                 android:id="@+id/radio9"
+                android:onClick="seleccionarGrupo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:text="@string/grupo1" />
 
             <RadioButton
                 android:id="@+id/radio10"
+                android:onClick="seleccionarGrupo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/grupo1" />
 
             <RadioButton
                 android:id="@+id/radio11"
+                android:onClick="seleccionarGrupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grupo1" />
+
+            <RadioButton
+                android:id="@+id/radio12"
+                android:onClick="seleccionarGrupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grupo1" />
+
+            <RadioButton
+                android:id="@+id/radio13"
+                android:onClick="seleccionarGrupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grupo1" />
+
+            <RadioButton
+                android:id="@+id/radio14"
+                android:onClick="seleccionarGrupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grupo1" />
+
+            <RadioButton
+                android:id="@+id/radio15"
+                android:onClick="seleccionarGrupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grupo1" />
+
+            <RadioButton
+                android:id="@+id/radio16"
+                android:onClick="seleccionarGrupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grupo1" />
+
+            <RadioButton
+                android:id="@+id/radio17"
+                android:onClick="seleccionarGrupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grupo1" />
+
+            <RadioButton
+                android:id="@+id/radio18"
+                android:onClick="seleccionarGrupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grupo1" />
+
+            <RadioButton
+                android:id="@+id/radio19"
+                android:onClick="seleccionarGrupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grupo1" />
+
+            <RadioButton
+                android:id="@+id/radio20"
+                android:onClick="seleccionarGrupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grupo1" />
+
+            <RadioButton
+                android:id="@+id/radio21"
+                android:onClick="seleccionarGrupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grupo1" />
+
+            <RadioButton
+                android:id="@+id/radio22"
+                android:onClick="seleccionarGrupo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/grupo1" />
