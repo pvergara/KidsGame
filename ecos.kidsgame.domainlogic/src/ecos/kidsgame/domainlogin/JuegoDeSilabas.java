@@ -1,43 +1,31 @@
 package ecos.kidsgame.domainlogin;
 
-import java.util.Collection;
+import java.util.List;
+
+import ecos.kidsgame.domainlogin.factories.AgrupacionDeSilabasFactory;
 
 public class JuegoDeSilabas {
 
-	private Usuario mUsuario;
-	private EstadoDelJuego mEstadoDelJuego;
-	private Collection<Silaba> mSilabasDeTodasLasPruebas;
+	private static JuegoDeSilabas mJuego;
 
-	public JuegoDeSilabas(Usuario usuario,
-			Collection<Silaba> silabasDeTodasLasPruebas) {
-		mUsuario = usuario;
-		mEstadoDelJuego = EstadoDelJuego.Inicial;
-		mSilabasDeTodasLasPruebas = silabasDeTodasLasPruebas;
+	// @Inject
+	private AgrupacionDeSilabasFactory agrupacionDeSilabasFactory = new AgrupacionDeSilabasFactory();
+	private List<List<Silaba>> agrupacionDeSilabas;
+
+	JuegoDeSilabas() {
+		agrupacionDeSilabas = agrupacionDeSilabasFactory.create();
 	}
 
-	public EstadoDelJuego getEstado() {
-		return mEstadoDelJuego;
+	public static JuegoDeSilabas getInstancia() {
+		if (mJuego == null) {
+			mJuego = new JuegoDeSilabas();
+		}
+		return mJuego;
 	}
 
-	public String getExplicacion() {
-		mEstadoDelJuego = EstadoDelJuego.EnPrueba;
-		return String
-				.format("Hola {0} este es el juego de las sílabas. Tienes que pasar por varias pruebas para terminarlo",
-						mUsuario.getNombre());
-	}
+	public List<List<Silaba>> getAgrupacionDeSilabas() {
+		return agrupacionDeSilabas;
 
-	public PruebaEscucharLasSilabas getPruebaEscucharLasSilabas() {
-		return new PruebaEscucharLasSilabas(mSilabasDeTodasLasPruebas);
-	}
-
-	public SeleccionarLasSilabasIndicadas getSeleccionarLasSilabasIndicadas() {
-		return new SeleccionarLasSilabasIndicadas(mSilabasDeTodasLasPruebas);
-	}
-
-	public CompletarPalabrasConSilabas getCompletarPalabrasConSilabas(
-			Collection<Palabra> palabras) {
-		return new CompletarPalabrasConSilabas(mSilabasDeTodasLasPruebas,
-				palabras);
 	}
 
 }

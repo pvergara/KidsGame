@@ -1,8 +1,15 @@
-package ecos.kidsgame.domainlogin;
+package ecos.kidsgame.domainlogin.challenge;
 
 import java.util.Collection;
 
-public class CompletarPalabrasConSilabas {
+import ecos.kidsgame.domainlogin.EstadoDeLaPrueba;
+import ecos.kidsgame.domainlogin.Fonema;
+import ecos.kidsgame.domainlogin.InformacionPendiente;
+import ecos.kidsgame.domainlogin.Palabra;
+import ecos.kidsgame.domainlogin.Representacion;
+import ecos.kidsgame.domainlogin.Silaba;
+
+public class PruebaCompletarPalabrasConSilabas {
 
     private EstadoDeLaPrueba mEstado;
     private Collection<Silaba> mSilabas;
@@ -35,7 +42,7 @@ public class CompletarPalabrasConSilabas {
 	return null;
     }
 
-    public CompletarPalabrasConSilabas(Collection<Silaba> silabas, Collection<Palabra> palabras) {
+    public PruebaCompletarPalabrasConSilabas(Collection<Silaba> silabas, Collection<Palabra> palabras) {
 	CambiarAEstado(EstadoDeLaPrueba.Inicial);
 	mSilabas = silabas;
 	mPalabrasPendientesDeJugar = palabras;

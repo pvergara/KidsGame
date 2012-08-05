@@ -9,20 +9,22 @@ import ecos.kidsgame.appdomain.Game.Dto.SilabaDto;
 import ecos.kidsgame.domainlogin.EstadoDeLaPrueba;
 import ecos.kidsgame.domainlogin.Fonema;
 import ecos.kidsgame.domainlogin.JuegoDeSilabas;
-import ecos.kidsgame.domainlogin.PruebaEscucharLasSilabas;
 import ecos.kidsgame.domainlogin.Representacion;
-import ecos.kidsgame.domainlogin.SeleccionarLasSilabasIndicadas;
 import ecos.kidsgame.domainlogin.Silaba;
 import ecos.kidsgame.domainlogin.Usuario;
+import ecos.kidsgame.domainlogin.challenge.PruebaEscucharLasSilabas;
+import ecos.kidsgame.domainlogin.challenge.PruebaSeleccionarLasSilabasIndicadas;
+import ecos.kidsgame.domainlogin.challenge.PruebasDelJuego;
 
 public class CurrentSilabesGame implements SilabesGame {
 
 	private Collection<Silaba> silabas;
 	private PruebaEscucharLasSilabas escucharLasSilabas;
-	private SeleccionarLasSilabasIndicadas encontrarLasSilabas;
+	private PruebaSeleccionarLasSilabasIndicadas encontrarLasSilabas;
+	private Usuario mUsuario;
 
 	public CurrentSilabesGame() {
-		Usuario usuario = new Usuario("Sofía");
+		mUsuario = new Usuario("Sofía");
 		silabas = new ArrayList<Silaba>(Arrays.asList(new Silaba[] {
 				new Silaba(Fonema.desde("ca"), Representacion.desde("Ca")),
 				new Silaba(Fonema.desde("ce"), Representacion.desde("Ce")),
@@ -30,7 +32,7 @@ public class CurrentSilabesGame implements SilabesGame {
 				new Silaba(Fonema.desde("co"), Representacion.desde("Co")),
 				new Silaba(Fonema.desde("cu"), Representacion.desde("Cu")) }));
 
-		JuegoDeSilabas juego = new JuegoDeSilabas(usuario, silabas);
+		PruebasDelJuego juego = new PruebasDelJuego(mUsuario, silabas);
 		juego.getExplicacion();
 		escucharLasSilabas = juego.getPruebaEscucharLasSilabas();
 		encontrarLasSilabas = juego.getSeleccionarLasSilabasIndicadas();
@@ -66,8 +68,7 @@ public class CurrentSilabesGame implements SilabesGame {
 	}
 
 	public void play(SilabaDto silabe) {
-		Silaba silaba = new Silaba(Fonema.desde(silabe.getFonema()),
-				Representacion.desde(silabe.getTexto()));
+		Silaba silaba = generarSilaba(silabe);
 		escucharLasSilabas.jugar(silaba);
 	}
 
@@ -82,10 +83,41 @@ public class CurrentSilabesGame implements SilabesGame {
 	}
 
 	public Boolean playExplicacion(SilabaDto silabe) {
-		Silaba silaba = new Silaba(Fonema.desde(silabe.getFonema()),
-				Representacion.desde(silabe.getTexto()));
+		Silaba silaba = generarSilaba(silabe);
 		return encontrarLasSilabas.jugar(silaba);
 
+	}
+
+	private Silaba generarSilaba(SilabaDto silabaDto) {
+		return new Silaba(Fonema.desde(silabaDto.getFonema()),
+				Representacion.desde(silabaDto.getTexto()));
+	}
+
+	public List<List<SilabaDto>> getSilabesGroup() {
+		List<List<Silaba>> agrupacionSilabas = JuegoDeSilabas.getInstancia().getAgrupacionDeSilabas();
+		List<List<SilabaDto>> agrupacionSilabasDto = new ArrayList<List<SilabaDto>>();
+		for (List<Silaba> agrupacion : agrupacionSilabas) {
+			List<SilabaDto> agrupacionDto = new ArrayList<SilabaDto>();
+			for (Silaba silaba : agrupacion) {
+				agrupacionDto.add(generarSilabaDto(silaba));
+			}
+			agrupacionSilabasDto.add(agrupacionDto);
+		}
+		return agrupacionSilabasDto;
+	}
+
+	public void establecerGrupoSilabasSeleccionado(List<SilabaDto> agrupacionSilabasDto) {
+		silabas.clear();
+		
+		for (SilabaDto silabaDto : agrupacionSilabasDto) {
+			silabas.add(generarSilaba(silabaDto));
+		}
+		
+		PruebasDelJuego juego = new PruebasDelJuego(mUsuario, silabas);
+		juego.getExplicacion();
+		escucharLasSilabas = juego.getPruebaEscucharLasSilabas();
+		encontrarLasSilabas = juego.getSeleccionarLasSilabasIndicadas();
+		
 	}
 
 }

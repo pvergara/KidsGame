@@ -1,15 +1,19 @@
-package ecos.kidsgame.domainlogin;
+package ecos.kidsgame.domainlogin.challenge;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Random;
 
-public class SeleccionarLasSilabasIndicadas {
+import ecos.kidsgame.domainlogin.EstadoDeLaPrueba;
+import ecos.kidsgame.domainlogin.Silaba;
+
+public class PruebaSeleccionarLasSilabasIndicadas {
 
 	private EstadoDeLaPrueba mEstado;
 	private ArrayList<Silaba> mSilabas;
 	private Silaba mSilaba;
 
-	public SeleccionarLasSilabasIndicadas(Collection<Silaba> silabas) {
+	public PruebaSeleccionarLasSilabasIndicadas(Collection<Silaba> silabas) {
 		mEstado = EstadoDeLaPrueba.Inicial;
 		mSilabas = new ArrayList<Silaba>(silabas);
 	}
@@ -26,11 +30,17 @@ public class SeleccionarLasSilabasIndicadas {
 	public Silaba getSilabaPendiente() {
 		mSilaba = null;
 		if (mSilabas.size() > 0) {
-			mSilaba = mSilabas.get(0);
-			mSilabas.remove(0);
+			int indice = (mSilabas.size()-1==0) ? 0 : elegirUnNumeroEntreCeroY(mSilabas.size()-1);
+			mSilaba = mSilabas.get(indice);
+			mSilabas.remove(indice);
 		}
 
 		return mSilaba;
+	}
+
+	private int elegirUnNumeroEntreCeroY(int i) {
+		Random random = new Random();
+		return random.nextInt(i);
 	}
 
 	public boolean jugar(Silaba silaba) {

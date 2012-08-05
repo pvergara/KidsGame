@@ -7,7 +7,6 @@ import ecos.kidsgame.appdomain.Game.Dto.SilabaDto;
 
 public interface SilabesGame
 {
-
 	List<SilabaDto> getSilabes();
 	String getExplannation();
 	void play(SilabaDto silabe);
@@ -16,4 +15,6 @@ public interface SilabesGame
 	SilabaDto getSilabaPendiente();
 	Boolean playExplicacion(SilabaDto silabe);
 	Boolean accomplishedEncontrar();
+	List<List<SilabaDto>> getSilabesGroup();
+	void establecerGrupoSilabasSeleccionado(List<SilabaDto> agrupacionSilabasDto);
 }

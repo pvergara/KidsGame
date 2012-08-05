@@ -1,9 +1,12 @@
-package ecos.kidsgame.domainlogin;
+package ecos.kidsgame.domainlogin.challenge;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import ecos.kidsgame.domainlogin.EstadoDeLaPrueba;
+import ecos.kidsgame.domainlogin.Silaba;
 
 public class PruebaEscucharLasSilabas
 {
