@@ -10,6 +10,7 @@ import ecos.framework.Binding.OnChangeListener;
 import ecos.framework.Speech.SpeechEngine;
 import ecos.kidsgame.appdomain.Game.SilabesGame;
 import ecos.kidsgame.appdomain.Game.Dto.SilabaDto;
+import ecos.kidsgame.game.EncontrarSilabaActivity;
 import ecos.kidsgame.game.JuegoActivity;
 import ecos.kidsgame.game.StartGameActivity;
 
@@ -50,8 +51,8 @@ public class StartGameViewModel {
 	}
 
 	// Command
-	public void iniciarSiguienteActividad(StartGameActivity currectContext) {
-		mActivityHandler.showActivity(currectContext, JuegoActivity.class);
+	public void iniciarPrimeraPrueba(StartGameActivity currentContext) {
+		mActivityHandler.showActivity(currentContext, JuegoActivity.class);
 	}
 
 
@@ -63,6 +64,12 @@ public class StartGameViewModel {
 	// Command
 	public void seleccionarGrupo(List<SilabaDto> agrupacionSilabasDto) {
 		mAppGame.establecerGrupoSilabasSeleccionado(agrupacionSilabasDto);
+	}
+
+
+	// Command
+	public void iniciarSegundaPrueba(StartGameActivity currentContext) {
+		mActivityHandler.showActivity(currentContext, EncontrarSilabaActivity.class);		
 	}
 
 }

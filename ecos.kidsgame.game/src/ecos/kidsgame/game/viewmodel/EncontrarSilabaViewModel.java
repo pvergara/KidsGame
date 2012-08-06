@@ -34,8 +34,7 @@ public class EncontrarSilabaViewModel {
 
 		public void fireFinished() {
 			if (mAppGame.accomplishedEncontrar()) {
-				mSpeechEngine
-						.speak("Perfecto. Puedes pasar a la siguiente prueba.");
+				mSpeechEngine.speak("Perfecto. Puedes pasar a la siguiente prueba.");
 				ocultarIniciar();
 				mostrarSiguiente();
 				ocultarRepetir();
@@ -46,14 +45,6 @@ public class EncontrarSilabaViewModel {
 		}
 	};
 
-	private SpeakFinished mOnExplannationFinished = new SpeakFinished() {
-
-		public void fireFinished() {
-			activarSilabas(mSilabas);
-			pronunciarSilabaSeleccionada();
-			mostrarRepetir();
-		}
-	};
 
 	private SilabaDto mSilabaPendiente;
 
@@ -104,10 +95,11 @@ public class EncontrarSilabaViewModel {
 		return mBindingManager;
 	}
 
-	// Command
+	// Command!!!!
 	public void iniciar() {
-		mSpeechEngine.speak(mAppGame.getExplannationEncontrar(),
-				mOnExplannationFinished);
+		activarSilabas(mSilabas);
+		pronunciarSilabaSeleccionada();
+		mostrarRepetir();
 		desactivarIniciar();
 
 	}
@@ -124,15 +116,20 @@ public class EncontrarSilabaViewModel {
 
 	public void jugar(SilabaDto silabaDto) {
 		if (!mAppGame.playExplicacion(silabaDto))
-			mSpeechEngine
-					.speak("Esa no es la sílaba correcta. Vuelve a intentarlo.");
+			mSpeechEngine.speak("Esa no es la sílaba correcta. Vuelve a intentarlo.");
 		else {
 			mSpeechEngine.speak("Correcto.", mOnSilabaCorrectaFinished);
 		}
 
 	}
 
+	// Command!!!!
 	public void repetirSilabaSeleccionada() {
 		pronunciarSilabaSeleccionada();
+	}
+
+	// Command!!!!
+	public void explicar() {
+		mSpeechEngine.speak(mAppGame.getExplannationEncontrar());
 	}
 }

@@ -1,87 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout1"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tl"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/juego_text1"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
-        android:id="@+id/juegoBoton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="29dp"
-        android:enabled="false"
-        android:text="@string/silabas_ca" />
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1" >
 
-    <Button
-        android:id="@+id/juegoBoton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/juegoBoton1"
-        android:layout_centerHorizontal="true"
-        android:enabled="false"
-        android:text="@string/silabas_ce" />
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/juego_text1"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
-        android:id="@+id/juegoBoton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/juegoBoton2"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="23dp"
-        android:enabled="false"
-        android:text="@string/silabas_ci" />
+        <Button
+            android:id="@+id/juegoBoton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView1"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="29dp"
+            android:enabled="false"
+            android:text="@string/silabas_ca" />
 
-    <Button
-        android:id="@+id/juegoBoton4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/juegoBoton1"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="44dp"
-        android:enabled="false"
-        android:text="@string/silabas_co" />
+        <Button
+            android:id="@+id/juegoBoton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/juegoBoton1"
+            android:layout_centerHorizontal="true"
+            android:enabled="false"
+            android:text="@string/silabas_ce" />
 
-    <Button
-        android:id="@+id/juegoBoton5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/juegoBoton4"
-        android:layout_alignBottom="@+id/juegoBoton4"
-        android:layout_marginLeft="19dp"
-        android:layout_toRightOf="@+id/juegoBoton2"
-        android:enabled="false"
-        android:text="@string/silabas_cu" />
-
-    <Button
-        android:id="@+id/commonIniciar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="72dp"
-        android:text="@string/iniciar" />
+        <Button
+            android:id="@+id/juegoBoton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/juegoBoton2"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="23dp"
+            android:enabled="false"
+            android:text="@string/silabas_ci" />
 
-    <Button
-        android:id="@+id/commonSiguiente"
+        <Button
+            android:id="@+id/juegoBoton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_below="@+id/juegoBoton1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="44dp"
+            android:enabled="false"
+            android:text="@string/silabas_co" />
+
+        <Button
+            android:id="@+id/juegoBoton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/juegoBoton4"
+            android:layout_alignBottom="@+id/juegoBoton4"
+            android:layout_marginLeft="19dp"
+            android:layout_toRightOf="@+id/juegoBoton2"
+            android:enabled="false"
+            android:text="@string/silabas_cu" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/FrameLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="52dp"
-        android:visibility="gone"
-        android:text="@string/siguiente" />
+        android:background="#30603333"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+        <Button
+            android:id="@+id/common_explicacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="10dp"
+            android:minWidth="30dp"
+            android:onClick="explicacionClick"
+            android:text="@string/explicacion"
+            android:textStyle="bold" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/commonIniciar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/iniciar" />
+
+        <Button
+            android:id="@+id/commonSiguiente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:text="@string/siguiente"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</TableLayout>

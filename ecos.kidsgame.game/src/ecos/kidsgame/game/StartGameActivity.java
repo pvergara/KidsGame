@@ -6,7 +6,6 @@ import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -73,20 +72,12 @@ public class StartGameActivity extends RoboActivity {
 	@InjectView(R.id.radio22)
 	RadioButton mGrupoSilaba22;
 
-	private OnClickListener mIniciarOnClick = new OnClickListener() {
-
-		public void onClick(View v) {
-			siguienteActividad();
-		}
-	};
 	private BindingManager mBidingManager;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
-		mIniciar.setOnClickListener(mIniciarOnClick);
 
 		mBidingManager = mStartGameActivityViewModel.getBindingManager();
 		mBidingManager.manageOnChangeFor("grupoSilaba1Tag", baGrupoSilaba1Tag, this);
@@ -293,8 +284,12 @@ public class StartGameActivity extends RoboActivity {
 		}
 	};
 	
-	public void siguienteActividad() {
-		mStartGameActivityViewModel.iniciarSiguienteActividad(StartGameActivity.this);
+	public void primeraPruebaClick(View v) {
+		mStartGameActivityViewModel.iniciarPrimeraPrueba(StartGameActivity.this);
+	}
+
+	public void segundaPruebaClick(View v) {
+		mStartGameActivityViewModel.iniciarSegundaPrueba(StartGameActivity.this);
 	}
 
 	

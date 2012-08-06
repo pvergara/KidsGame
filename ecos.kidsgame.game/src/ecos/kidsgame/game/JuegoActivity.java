@@ -184,5 +184,10 @@ public class JuegoActivity extends RoboActivity {
 			mIniciar.setVisibility(visible?View.VISIBLE:View.GONE);
 		}
 	};
-    
+
+	public void explicacionClick(View v)
+	{
+		mJuegoViewModel.explicar();
+	}
+	
 }

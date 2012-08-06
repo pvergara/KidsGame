@@ -57,13 +57,6 @@ public class JuegoViewModel {
 		}
 	};
 
-	private SpeakFinished mOnExplanationFinished = new SpeakFinished() {
-		
-		public void fireFinished() {
-			mostrarSilabas(mSilabas);
-		}
-	};
-
 	private void mostrarSilabas(List<SilabaDto> silabas) {
 		for (int i = 0; i < silabas.size(); i++) {
 			String elementName = "silaba"+(i+1)+"Enabled";
@@ -119,16 +112,26 @@ public class JuegoViewModel {
 		return bindingManager;
 	}
 
+	//Command!!!
 	public void iniciarJuego()
 	{
-		String explicacion = appGame.getExplannation();
-		speechEngine.speak(explicacion,mOnExplanationFinished);
-		mChange.onChange("iniciarEnabled", false);		
+		desactivarIniciar();
+		mostrarSilabas(mSilabas);		
+	}
+
+	private void desactivarIniciar() {
+		mChange.onChange("iniciarEnabled", false);
 	}
 
 	//Command!!!
 	public void siguienteJuego(JuegoActivity currectContext) {
 		mActivityHandler.showActivity(currectContext, EncontrarSilabaActivity.class);
+	}
+
+	//Command!!!
+	public void explicar() {
+		String explicacion = appGame.getExplannation();
+		speechEngine.speak(explicacion);		
 	}
 
 }

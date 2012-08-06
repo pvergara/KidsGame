@@ -66,7 +66,7 @@ public class StartGameViewModelTest {
 
 	@Test
 	public void alInvocarIniciarSiguienteActividadSePideAbrirJuegoActivity() throws Exception {
-		startGameViewModel.iniciarSiguienteActividad(currectContextMocked);
+		startGameViewModel.iniciarPrimeraPrueba(currectContextMocked);
 
 		verify(activityHandlerMocked).showActivity(currectContextMocked, JuegoActivity.class);
 	}

@@ -3,7 +3,7 @@
 
     <string name="hello">Hello World, gameActivity!</string>
     <string name="app_name">KidsGame: Aprendiendo a leer</string>
-    <string name="iniciar_juego">Iniciar juego</string>
+    <string name="iniciar_juego">1ª prueba</string>
     <string name="juego_text1">Pulsa para escuchar</string>
     <string name="silabas_ca">CA</string>
     <string name="silabas_ce">CE</string>
@@ -15,5 +15,7 @@
     <string name="repetir">Repetir</string>
     <string name="encontrar_text1">Escucha y encuentra</string>
     <string name="grupo1">LA,LE,LI,LO,LU</string>
+    <string name="main_encontrar">2ª prueba</string>
+    <string name="explicacion">\?</string>
     
 </resources>

@@ -181,13 +181,23 @@
         android:gravity="right"
         android:paddingBottom="10dp"
         android:paddingTop="10dp" >
-
+
         <Button
             android:id="@id/main_iniciar"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
+            android:onClick="primeraPruebaClick"
             android:text="@string/iniciar_juego" />
+
+        <Button
+            android:id="@+id/main_encontrar"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:onClick="segundaPruebaClick"
+            android:text="@string/main_encontrar" />
+
     </TableRow>
 
 </TableLayout>
