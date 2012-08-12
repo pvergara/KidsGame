@@ -2,14 +2,14 @@ package ecos.kidsgame.domainlogin;
 
 public class Usuario {
 
-    private String mNombreUsuario;
+	private String mNombreUsuario;
 
-    public Usuario(String nombreUsuario) {
-	mNombreUsuario = nombreUsuario;
-    }
+	public Usuario(String nombreUsuario) {
+		mNombreUsuario = nombreUsuario;
+	}
 
-    public String getNombre() {
-	return mNombreUsuario;
-    }
+	public String getNombre() {
+		return mNombreUsuario;
+	}
 
 }

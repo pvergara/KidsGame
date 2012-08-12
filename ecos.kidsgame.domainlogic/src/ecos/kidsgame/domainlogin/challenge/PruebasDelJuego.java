@@ -26,7 +26,7 @@ public class PruebasDelJuego {
 	public String getExplicacion() {
 		mEstadoDelJuego = EstadoDelJuego.EnPrueba;
 		return String.format(
-				"Hola {0} este es el juego de las sílabas. Tienes que pasar por varias pruebas para terminarlo",
+				"Hola %s este es el juego de las sílabas. Tienes que pasar por varias pruebas para terminarlo",
 				mUsuario.getNombre());
 	}
 
