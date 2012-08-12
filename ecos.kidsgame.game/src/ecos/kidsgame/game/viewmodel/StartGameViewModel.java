@@ -16,22 +16,21 @@ import ecos.kidsgame.game.StartGameActivity;
 
 public class StartGameViewModel {
 
-    @Inject                            
+	@Inject
 	public ActivityHandler mActivityHandler;
 
-    @Inject                            
+	@Inject
 	public SpeechEngine speechEngine;
 
-    @Inject                            
+	@Inject
 	public SilabesGame mAppGame;
 
-    @Inject                            
+	@Inject
 	public BindingManager bindingManager;
 
 	private List<List<SilabaDto>> mAgrupacionDeSilabas;
 
 	private OnChangeListener mChangeListener;
-
 
 	public void init() {
 		speechEngine.tryInit();
@@ -39,15 +38,9 @@ public class StartGameViewModel {
 		mChangeListener = bindingManager.getOnChangeListener();
 		actualizarAgrupacionSilabas();
 	}
-    
-    
+
 	private void actualizarAgrupacionSilabas() {
-		byte i=1;
-		for (List<SilabaDto> grupoSilabas : mAgrupacionDeSilabas) {
-			mChangeListener.onChange("grupoSilaba"+i+"Tag", grupoSilabas);
-			i++;
-		}
-		
+		mChangeListener.onChange("agrupacionSilabasTag", mAgrupacionDeSilabas);
 	}
 
 	// Command
@@ -55,21 +48,24 @@ public class StartGameViewModel {
 		mActivityHandler.showActivity(currentContext, JuegoActivity.class);
 	}
 
-
 	public BindingManager getBindingManager() {
 		return bindingManager;
 	}
-
 
 	// Command
 	public void seleccionarGrupo(List<SilabaDto> agrupacionSilabasDto) {
 		mAppGame.establecerGrupoSilabasSeleccionado(agrupacionSilabasDto);
 	}
 
-
 	// Command
 	public void iniciarSegundaPrueba(StartGameActivity currentContext) {
-		mActivityHandler.showActivity(currentContext, EncontrarSilabaActivity.class);		
+		mActivityHandler.showActivity(currentContext, EncontrarSilabaActivity.class);
+	}
+
+	// Command
+	public void explicar() {
+		String explicacion = mAppGame.getExplannationJuego();
+		speechEngine.speak(explicacion);
 	}
 
 }
