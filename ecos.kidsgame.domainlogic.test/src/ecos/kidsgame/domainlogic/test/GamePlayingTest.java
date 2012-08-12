@@ -42,26 +42,18 @@ public class GamePlayingTest {
 		caSilaba = SilabaOM.generarSilaba("ca");
 		ceSilaba = SilabaOM.generarSilaba("ce");
 		zaSilaba = SilabaOM.generarSilaba("za");
-		silabas = new ArrayList<Silaba>(Arrays.asList(new Silaba[] { caSilaba,
-				ceSilaba }));
+		silabas = new ArrayList<Silaba>(Arrays.asList(new Silaba[] { caSilaba, ceSilaba }));
 		palabras = GenerarPalabras();
 	}
 
 	private Collection<Palabra> GenerarPalabras() {
-		Palabra casa = new Palabra(FonemaOM.generarFonemasDesde(new String[] {
-				"ca", "sa" }));
-		Palabra cabra = new Palabra(FonemaOM.generarFonemasDesde(new String[] {
-				"ca", "bra" }));
-		Palabra cebra = new Palabra(FonemaOM.generarFonemasDesde(new String[] {
-				"ce", "bra" }));
-		Palabra salamanca = new Palabra(
-				FonemaOM.generarFonemasDesde(new String[] { "sa", "la", "man",
-						"ca" }));
-		Palabra cereal = new Palabra(FonemaOM.generarFonemasDesde(new String[] {
-				"ce", "re", "al" }));
-		Collection<Palabra> coleccion = new ArrayList<Palabra>(
-				Arrays.asList(new Palabra[] { casa, cabra, cebra, salamanca,
-						cereal }));
+		Palabra casa = new Palabra(FonemaOM.generarFonemasDesde(new String[] { "ca", "sa" }));
+		Palabra cabra = new Palabra(FonemaOM.generarFonemasDesde(new String[] { "ca", "bra" }));
+		Palabra cebra = new Palabra(FonemaOM.generarFonemasDesde(new String[] { "ce", "bra" }));
+		Palabra salamanca = new Palabra(FonemaOM.generarFonemasDesde(new String[] { "sa", "la", "man", "ca" }));
+		Palabra cereal = new Palabra(FonemaOM.generarFonemasDesde(new String[] { "ce", "re", "al" }));
+		Collection<Palabra> coleccion = new ArrayList<Palabra>(Arrays.asList(new Palabra[] { casa, cabra, cebra,
+				salamanca, cereal }));
 		return coleccion;
 	}
 
@@ -83,8 +75,7 @@ public class GamePlayingTest {
 	}
 
 	private boolean comprobarSiLaSilabaCoincideConAlgunaDeLasSilabasDeLaColeccionPasada(
-			Silaba silabaDevueltaEnLaPrueba,
-			Collection<Silaba> silabasUsadasParaIniciarLaPrueba) {
+			Silaba silabaDevueltaEnLaPrueba, Collection<Silaba> silabasUsadasParaIniciarLaPrueba) {
 		boolean coincide = false;
 
 		for (Silaba silaba : silabasUsadasParaIniciarLaPrueba) {
@@ -101,25 +92,23 @@ public class GamePlayingTest {
 	}
 
 	private String generarExplicacionDelJuego() {
-		return String
-				.format("Hola {0} este es el juego de las sílabas. Tienes que pasar por varias pruebas para terminarlo",
-						usuario.getNombre());
+		return String.format(
+				"Hola {0} este es el juego de las sílabas. Tienes que pasar por varias pruebas para terminarlo",
+				usuario.getNombre());
 	}
 
 	private Usuario generarUsuario(String nombreUsuario) {
 		return new Usuario(nombreUsuario);
 	}
 
-	private void simularPulsarTodasLasSilabasDeLaPrueba(
-			PruebaEscucharLasSilabas escucharLasSilabas) {
+	private void simularPulsarTodasLasSilabasDeLaPrueba(PruebaEscucharLasSilabas escucharLasSilabas) {
 		for (Silaba silaba : silabas) {
 			escucharLasSilabas.jugar(silaba);
 		}
 
 	}
 
-	private Silaba obtenerUnaSilabaDeLaColeccionQueNoCoincideConLaSilaba(
-			Collection<Silaba> silabas2, Silaba silaba) {
+	private Silaba obtenerUnaSilabaDeLaColeccionQueNoCoincideConLaSilaba(Collection<Silaba> silabas2, Silaba silaba) {
 		Silaba silabaCoincidente = null;
 		for (Silaba silaba2 : silabas2) {
 			if (!silaba.equals(silaba2)) {
@@ -130,8 +119,7 @@ public class GamePlayingTest {
 		return silabaCoincidente;
 	}
 
-	private Silaba consultarQueSilabaDeLaColeccionCoincideConLaSilaba(
-			Collection<Silaba> silabas2, Silaba silaba) {
+	private Silaba consultarQueSilabaDeLaColeccionCoincideConLaSilaba(Collection<Silaba> silabas2, Silaba silaba) {
 		Silaba silabaCoincidente = null;
 		for (Silaba silaba2 : silabas2) {
 			if (silaba.equals(silaba2)) {
@@ -159,93 +147,72 @@ public class GamePlayingTest {
 		juego.getExplicacion();
 		assertEquals(EstadoDelJuego.EnPrueba, juego.getEstado());
 
-		PruebaEscucharLasSilabas escucharLasSilabas = juego
-				.getPruebaEscucharLasSilabas();
+		PruebaEscucharLasSilabas escucharLasSilabas = juego.getPruebaEscucharLasSilabas();
 		assertEquals(EstadoDeLaPrueba.Inicial, escucharLasSilabas.getEstado());
-		assertEquals(explicacionDeLaPruebaDeEscucharLasSilabas,
-				escucharLasSilabas.getExplicacion());
-		assertEquals(EstadoDeLaPrueba.EsperandoRespuesta,
-				escucharLasSilabas.getEstado());
+		assertEquals(explicacionDeLaPruebaDeEscucharLasSilabas, escucharLasSilabas.getExplicacion());
+		assertEquals(EstadoDeLaPrueba.EsperandoRespuesta, escucharLasSilabas.getEstado());
 	}
 
 	@Test
 	public void comoJugarALaPrimeraPrueba() {
 		PruebasDelJuego juego = new PruebasDelJuego(usuario, silabas);
 
-		PruebaEscucharLasSilabas escucharLasSilabas = juego
-				.getPruebaEscucharLasSilabas();
+		PruebaEscucharLasSilabas escucharLasSilabas = juego.getPruebaEscucharLasSilabas();
 
 		simularPulsarTodasLasSilabasDeLaPrueba(escucharLasSilabas);
-		assertEquals(EstadoDeLaPrueba.Finalizada,
-				escucharLasSilabas.getEstado());
+		assertEquals(EstadoDeLaPrueba.Finalizada, escucharLasSilabas.getEstado());
 	}
 
 	@Test
 	public void comoIniciarLaSegundaPrueba() {
 		PruebasDelJuego juego = new PruebasDelJuego(usuario, silabas);
-		PruebaSeleccionarLasSilabasIndicadas seleccionarLasSilabas = juego
-				.getSeleccionarLasSilabasIndicadas();
+		PruebaSeleccionarLasSilabasIndicadas seleccionarLasSilabas = juego.getSeleccionarLasSilabasIndicadas();
 
-		assertEquals(EstadoDeLaPrueba.Inicial,
-				seleccionarLasSilabas.getEstado());
-		assertEquals(explicacionDeLaPruebaDeSeleccionarLasSilabasIndicadas,
-				seleccionarLasSilabas.getExplicacion());
-		assertEquals(EstadoDeLaPrueba.PendienteMasInformacion,
-				seleccionarLasSilabas.getEstado());
+		assertEquals(EstadoDeLaPrueba.Inicial, seleccionarLasSilabas.getEstado());
+		assertEquals(explicacionDeLaPruebaDeSeleccionarLasSilabasIndicadas, seleccionarLasSilabas.getExplicacion());
+		assertEquals(EstadoDeLaPrueba.PendienteMasInformacion, seleccionarLasSilabas.getEstado());
 	}
 
 	@Test
 	public void comoJugarALaSegundaPrueba() {
 		PruebasDelJuego juego = new PruebasDelJuego(usuario, silabas);
-		PruebaSeleccionarLasSilabasIndicadas seleccionarLasSilabas = juego
-				.getSeleccionarLasSilabasIndicadas();
+		PruebaSeleccionarLasSilabasIndicadas seleccionarLasSilabas = juego.getSeleccionarLasSilabasIndicadas();
 
 		Silaba silaba = seleccionarLasSilabas.getSilabaPendiente();
-		assertTrue(comprobarSiLaSilabaCoincideConAlgunaDeLasSilabasDeLaColeccionPasada(
-				silaba, silabas));
+		assertTrue(comprobarSiLaSilabaCoincideConAlgunaDeLasSilabasDeLaColeccionPasada(silaba, silabas));
 
 		// Dummy response
 		assertFalse(seleccionarLasSilabas.jugar(zaSilaba));
-		assertEquals(EstadoDeLaPrueba.EsperandoRespuesta,
-				seleccionarLasSilabas.getEstado());
+		assertEquals(EstadoDeLaPrueba.EsperandoRespuesta, seleccionarLasSilabas.getEstado());
 
 		assertTrue(seleccionarLasSilabas.jugar(caSilaba));
-		assertEquals(EstadoDeLaPrueba.PendienteMasInformacion,
-				seleccionarLasSilabas.getEstado());
+		assertEquals(EstadoDeLaPrueba.PendienteMasInformacion, seleccionarLasSilabas.getEstado());
 
 		silaba = seleccionarLasSilabas.getSilabaPendiente();
 
 		// Dummy response
 		assertFalse(seleccionarLasSilabas.jugar(zaSilaba));
-		assertEquals(EstadoDeLaPrueba.EsperandoRespuesta,
-				seleccionarLasSilabas.getEstado());
+		assertEquals(EstadoDeLaPrueba.EsperandoRespuesta, seleccionarLasSilabas.getEstado());
 
-		assertTrue(comprobarSiLaSilabaCoincideConAlgunaDeLasSilabasDeLaColeccionPasada(
-				silaba, silabas));
+		assertTrue(comprobarSiLaSilabaCoincideConAlgunaDeLasSilabasDeLaColeccionPasada(silaba, silabas));
 
 		assertTrue(seleccionarLasSilabas.jugar(silaba));
 
-		assertEquals(EstadoDeLaPrueba.Finalizada,
-				seleccionarLasSilabas.getEstado());
+		assertEquals(EstadoDeLaPrueba.Finalizada, seleccionarLasSilabas.getEstado());
 
 		// Dummy response
 		assertFalse(seleccionarLasSilabas.jugar(zaSilaba));
-		assertEquals(EstadoDeLaPrueba.Finalizada,
-				seleccionarLasSilabas.getEstado());
+		assertEquals(EstadoDeLaPrueba.Finalizada, seleccionarLasSilabas.getEstado());
 	}
 
 	@Test
 	public void comoIniciarLaTerceraPrueba() {
 		PruebasDelJuego juego = new PruebasDelJuego(usuario, silabas);
-		PruebaCompletarPalabrasConSilabas completarPalabrasConSilabas = juego
-				.getCompletarPalabrasConSilabas(palabras);
+		PruebaCompletarPalabrasConSilabas completarPalabrasConSilabas = juego.getCompletarPalabrasConSilabas(palabras);
 
-		assertEquals(EstadoDeLaPrueba.Inicial,
-				completarPalabrasConSilabas.getEstado());
-		assertEquals(explicacionDeLaPruebaDeHacerPalabrasConSilabas,
-				completarPalabrasConSilabas.getExplicacion());
-		assertEquals(EstadoDeLaPrueba.PendienteMasInformacion,
-				completarPalabrasConSilabas.getEstado());
+		assertEquals(EstadoDeLaPrueba.Inicial, completarPalabrasConSilabas.getEstado());
+		assertEquals(explicacionDeLaPruebaDeHacerPalabrasConSilabas, completarPalabrasConSilabas.getExplicacion());
+		assertEquals(EstadoDeLaPrueba.PendienteMasInformacion, completarPalabrasConSilabas.getEstado());
 	}
 
 	@Test
@@ -258,52 +225,40 @@ public class GamePlayingTest {
 				.getCompletarPalabrasConSilabas(palabrasParametro);
 
 		for (int i = 0; i < palabras.size(); i++) {
-			InformacionPendiente informacionPendiente = completarPalabrasConSilabas
-					.getInformacionPendiente();
-			assertEquals(EstadoDeLaPrueba.EsperandoRespuesta,
-					completarPalabrasConSilabas.getEstado());
+			InformacionPendiente informacionPendiente = completarPalabrasConSilabas.getInformacionPendiente();
+			assertEquals(EstadoDeLaPrueba.EsperandoRespuesta, completarPalabrasConSilabas.getEstado());
 
 			Palabra palabraCompleta = informacionPendiente.getPalabraCompleta();
 			assertNotNull(palabraCompleta.toString());
-			assertTrue(
-					String.format(
-							"%s No aparece dentro de ninguna de estas palabras",
-							palabraCompleta),
-					comprobarSiLaPalabraCompletaCoincideConAlgunaDeLasPalabrasDeLaColeccion(
-							palabraCompleta, palabras));
+			assertTrue(String.format("%s No aparece dentro de ninguna de estas palabras", palabraCompleta),
+					comprobarSiLaPalabraCompletaCoincideConAlgunaDeLasPalabrasDeLaColeccion(palabraCompleta, palabras));
 			assertTrue(comprobarSiLaSilabaCoincideConAlgunaDeLasSilabasDeLaColeccionPasada(
 					informacionPendiente.getSilaba(), silabas));
 
-			Silaba silabaDeLaColeccionQueCorresponde = consultarQueSilabaDeLaColeccionCoincideConLaSilaba(
-					silabas, informacionPendiente.getSilaba());
-			Silaba silabaDeLaColeccionQueNOCorresponde = obtenerUnaSilabaDeLaColeccionQueNoCoincideConLaSilaba(
-					silabas, informacionPendiente.getSilaba());
+			Silaba silabaDeLaColeccionQueCorresponde = consultarQueSilabaDeLaColeccionCoincideConLaSilaba(silabas,
+					informacionPendiente.getSilaba());
+			Silaba silabaDeLaColeccionQueNOCorresponde = obtenerUnaSilabaDeLaColeccionQueNoCoincideConLaSilaba(silabas,
+					informacionPendiente.getSilaba());
 
 			// Dummy response
-			assertFalse(completarPalabrasConSilabas
-					.jugar(silabaDeLaColeccionQueNOCorresponde));
-			assertEquals(EstadoDeLaPrueba.EsperandoRespuesta,
-					completarPalabrasConSilabas.getEstado());
+			assertFalse(completarPalabrasConSilabas.jugar(silabaDeLaColeccionQueNOCorresponde));
+			assertEquals(EstadoDeLaPrueba.EsperandoRespuesta, completarPalabrasConSilabas.getEstado());
 
-			assertTrue(completarPalabrasConSilabas
-					.jugar(silabaDeLaColeccionQueCorresponde));
+			assertTrue(completarPalabrasConSilabas.jugar(silabaDeLaColeccionQueCorresponde));
 
 			// TODO: IF I+1==SIZE ESTADO FINALIZADO!!!!!!!!!!! (una vez que se
 			// juega la última y se acierta el estado ya deberia ser ese)
 			if (i + 1 == palabras.size())
-				assertEquals(EstadoDeLaPrueba.Finalizada,
-						completarPalabrasConSilabas.getEstado());
+				assertEquals(EstadoDeLaPrueba.Finalizada, completarPalabrasConSilabas.getEstado());
 			else
-				assertEquals(EstadoDeLaPrueba.PendienteMasInformacion,
-						completarPalabrasConSilabas.getEstado());
+				assertEquals(EstadoDeLaPrueba.PendienteMasInformacion, completarPalabrasConSilabas.getEstado());
 		}
 
-		assertEquals(EstadoDeLaPrueba.Finalizada,
-				completarPalabrasConSilabas.getEstado());
+		assertEquals(EstadoDeLaPrueba.Finalizada, completarPalabrasConSilabas.getEstado());
 	}
 
-	private boolean comprobarSiLaPalabraCompletaCoincideConAlgunaDeLasPalabrasDeLaColeccion(
-			Palabra palabraCompleta, Collection<Palabra> palabras2) {
+	private boolean comprobarSiLaPalabraCompletaCoincideConAlgunaDeLasPalabrasDeLaColeccion(Palabra palabraCompleta,
+			Collection<Palabra> palabras2) {
 		boolean resultado = false;
 		for (Palabra palabra : palabras2) {
 			if (palabra.equals(palabraCompleta))
