@@ -22,6 +22,7 @@ public class CurrentSilabesGame implements SilabesGame {
 	private PruebaEscucharLasSilabas escucharLasSilabas;
 	private PruebaSeleccionarLasSilabasIndicadas encontrarLasSilabas;
 	private Usuario mUsuario;
+	private String mExplicacionJuego;
 
 	public CurrentSilabesGame() {
 		mUsuario = new Usuario("Sofía");
@@ -33,7 +34,7 @@ public class CurrentSilabesGame implements SilabesGame {
 				new Silaba(Fonema.desde("cu"), Representacion.desde("Cu")) }));
 
 		PruebasDelJuego juego = new PruebasDelJuego(mUsuario, silabas);
-		juego.getExplicacion();
+		mExplicacionJuego = juego.getExplicacion();
 		escucharLasSilabas = juego.getPruebaEscucharLasSilabas();
 		encontrarLasSilabas = juego.getSeleccionarLasSilabasIndicadas();
 	}
@@ -114,10 +115,14 @@ public class CurrentSilabesGame implements SilabesGame {
 		}
 		
 		PruebasDelJuego juego = new PruebasDelJuego(mUsuario, silabas);
-		juego.getExplicacion();
+		mExplicacionJuego = juego.getExplicacion();
 		escucharLasSilabas = juego.getPruebaEscucharLasSilabas();
 		encontrarLasSilabas = juego.getSeleccionarLasSilabasIndicadas();
 		
+	}
+
+	public String getExplannationJuego() {
+		return mExplicacionJuego;
 	}
 
 }

@@ -17,4 +17,5 @@ public interface SilabesGame
 	Boolean accomplishedEncontrar();
 	List<List<SilabaDto>> getSilabesGroup();
 	void establecerGrupoSilabasSeleccionado(List<SilabaDto> agrupacionSilabasDto);
+	String getExplannationJuego();
 }
