@@ -32,10 +32,13 @@ public class StartGameViewModel {
 
 	private OnChangeListener mChangeListener;
 
+	private String mExplicacion;
+
 	public void init() {
 		speechEngine.tryInit();
 		mAgrupacionDeSilabas = mAppGame.getSilabesGroup();
 		mChangeListener = bindingManager.getOnChangeListener();
+		mExplicacion = mAppGame.getExplannationJuego();
 		actualizarAgrupacionSilabas();
 	}
 
@@ -43,18 +46,13 @@ public class StartGameViewModel {
 		mChangeListener.onChange("agrupacionSilabasTag", mAgrupacionDeSilabas);
 	}
 
-	// Command
-	public void iniciarPrimeraPrueba(StartGameActivity currentContext) {
-		mActivityHandler.showActivity(currentContext, JuegoActivity.class);
-	}
-
 	public BindingManager getBindingManager() {
 		return bindingManager;
 	}
 
 	// Command
-	public void seleccionarGrupo(List<SilabaDto> agrupacionSilabasDto) {
-		mAppGame.establecerGrupoSilabasSeleccionado(agrupacionSilabasDto);
+	public void iniciarPrimeraPrueba(StartGameActivity currentContext) {
+		mActivityHandler.showActivity(currentContext, JuegoActivity.class);
 	}
 
 	// Command
@@ -63,9 +61,13 @@ public class StartGameViewModel {
 	}
 
 	// Command
+	public void seleccionarGrupo(List<SilabaDto> agrupacionSilabasDto) {
+		mAppGame.establecerGrupoSilabasSeleccionado(agrupacionSilabasDto);
+	}
+
+	// Command
 	public void explicar() {
-		String explicacion = mAppGame.getExplannationJuego();
-		speechEngine.speak(explicacion);
+		speechEngine.speak(mExplicacion);
 	}
 
 }
