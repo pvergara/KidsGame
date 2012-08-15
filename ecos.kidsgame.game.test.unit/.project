@@ -45,5 +45,10 @@
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/ecos.kidsgame.game/test/ecos/kidsgame/game/StartGameViewModelTest.java</locationURI>
 		</link>
+		<link>
+			<name>test/ecos/kidsgame/game/CompletarPalabraViewModelTest.java</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/ecos.kidsgame.game/test/ecos/kidsgame/game/CompletarPalabraViewModelTest.java</locationURI>
+		</link>
 	</linkedResources>
 </projectDescription>

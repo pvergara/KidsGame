@@ -8,10 +8,13 @@ import java.util.List;
 import ecos.kidsgame.appdomain.Game.Dto.SilabaDto;
 import ecos.kidsgame.domainlogin.EstadoDeLaPrueba;
 import ecos.kidsgame.domainlogin.Fonema;
+import ecos.kidsgame.domainlogin.InformacionPendiente;
 import ecos.kidsgame.domainlogin.JuegoDeSilabas;
+import ecos.kidsgame.domainlogin.Palabra;
 import ecos.kidsgame.domainlogin.Representacion;
 import ecos.kidsgame.domainlogin.Silaba;
 import ecos.kidsgame.domainlogin.Usuario;
+import ecos.kidsgame.domainlogin.challenge.PruebaCompletarPalabrasConSilabas;
 import ecos.kidsgame.domainlogin.challenge.PruebaEscucharLasSilabas;
 import ecos.kidsgame.domainlogin.challenge.PruebaSeleccionarLasSilabasIndicadas;
 import ecos.kidsgame.domainlogin.challenge.PruebasDelJuego;
@@ -23,6 +26,8 @@ public class CurrentSilabesGame implements SilabesGame {
 	private PruebaSeleccionarLasSilabasIndicadas encontrarLasSilabas;
 	private Usuario mUsuario;
 	private String mExplicacionJuego;
+	private PruebaCompletarPalabrasConSilabas completarPalabras;
+	private Collection<Palabra> palabras;
 
 	public CurrentSilabesGame() {
 		mUsuario = new Usuario("Sofía");
@@ -33,10 +38,19 @@ public class CurrentSilabesGame implements SilabesGame {
 				new Silaba(Fonema.desde("co"), Representacion.desde("Co")),
 				new Silaba(Fonema.desde("cu"), Representacion.desde("Cu")) }));
 
+		palabras = new ArrayList<Palabra>(Arrays.asList(new Palabra[]{
+				new Palabra(Arrays.asList(new Fonema[]{Fonema.desde("CA"),Fonema.desde("SA")})),
+				new Palabra(Arrays.asList(new Fonema[]{Fonema.desde("CE"),Fonema.desde("RE"),Fonema.desde("ZA")})),
+				new Palabra(Arrays.asList(new Fonema[]{Fonema.desde("CI"),Fonema.desde("MA")})),
+				new Palabra(Arrays.asList(new Fonema[]{Fonema.desde("CO"),Fonema.desde("MI"),Fonema.desde("DA")})),
+				new Palabra(Arrays.asList(new Fonema[]{Fonema.desde("CU"),Fonema.desde("CHA"),Fonema.desde("RA")}))
+		}));
+		
 		PruebasDelJuego juego = new PruebasDelJuego(mUsuario, silabas);
 		mExplicacionJuego = juego.getExplicacion();
 		escucharLasSilabas = juego.getPruebaEscucharLasSilabas();
 		encontrarLasSilabas = juego.getSeleccionarLasSilabasIndicadas();
+		completarPalabras = juego.getCompletarPalabrasConSilabas(palabras);
 	}
 
 	public List<SilabaDto> getSilabes() {
@@ -74,13 +88,11 @@ public class CurrentSilabesGame implements SilabesGame {
 	}
 
 	public Boolean accomplished() {
-		return escucharLasSilabas.getEstado().equals(
-				EstadoDeLaPrueba.Finalizada);
+		return escucharLasSilabas.getEstado().equals(EstadoDeLaPrueba.Finalizada);
 	}
 
 	public Boolean accomplishedEncontrar() {
-		return encontrarLasSilabas.getEstado().equals(
-				EstadoDeLaPrueba.Finalizada);
+		return encontrarLasSilabas.getEstado().equals(EstadoDeLaPrueba.Finalizada);
 	}
 
 	public Boolean playExplicacion(SilabaDto silabe) {
@@ -90,8 +102,7 @@ public class CurrentSilabesGame implements SilabesGame {
 	}
 
 	private Silaba generarSilaba(SilabaDto silabaDto) {
-		return new Silaba(Fonema.desde(silabaDto.getFonema()),
-				Representacion.desde(silabaDto.getTexto()));
+		return new Silaba(Fonema.desde(silabaDto.getFonema()), Representacion.desde(silabaDto.getTexto()));
 	}
 
 	public List<List<SilabaDto>> getSilabesGroup() {
@@ -109,20 +120,44 @@ public class CurrentSilabesGame implements SilabesGame {
 
 	public void establecerGrupoSilabasSeleccionado(List<SilabaDto> agrupacionSilabasDto) {
 		silabas.clear();
-		
+
 		for (SilabaDto silabaDto : agrupacionSilabasDto) {
 			silabas.add(generarSilaba(silabaDto));
 		}
-		
+
 		PruebasDelJuego juego = new PruebasDelJuego(mUsuario, silabas);
 		mExplicacionJuego = juego.getExplicacion();
 		escucharLasSilabas = juego.getPruebaEscucharLasSilabas();
 		encontrarLasSilabas = juego.getSeleccionarLasSilabasIndicadas();
-		
+		completarPalabras = juego.getCompletarPalabrasConSilabas(palabras);
 	}
 
 	public String getExplannationJuego() {
 		return mExplicacionJuego;
+	}
+
+	public String getExplicacionPruebaCompletarPalabras() {
+		return completarPalabras.getExplicacion();
+	}
+
+	public String getPalabraPendienteDeCompletar() {
+		InformacionPendiente ip = completarPalabras.getInformacionPendiente();
+		Palabra palabra = ip.getPalabraIncompleta();
+		return palabra.toRepresentacion().toString();
+	}
+
+	public Boolean playCompletar(SilabaDto silabaDto) {
+		return completarPalabras.jugar(generarSilaba(silabaDto));
+	}
+
+	public String getPalabraPendienteCompleta() {
+		InformacionPendiente ip = completarPalabras.getInformacionPendiente();
+		Palabra palabra = ip.getPalabraCompleta();
+		return palabra.toRepresentacion().toString();
+	}
+
+	public Boolean accomplishedCompletarPalabra() {
+		return completarPalabras.getEstado()==EstadoDeLaPrueba.Finalizada;
 	}
 
 }

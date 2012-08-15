@@ -41,12 +41,23 @@ public class JuegoViewModelTest {
 	}
 
 	@Test
-	public void alIniciarSeObtieneElGestorDeBinding_SeObtienenLasSilabasQueSeEscucharanYSeLanzaraUnEventoDeActualizacionALasCincoSilabas() {
-
+	public void alIniciarSeObtieneElGestorDeBinding() {
 		mJuegoViewModel.init();
 
 		verify(mJuegoViewModel.bindingManager).getOnChangeListener();
+	}
+
+	@Test
+	public void alIniciarSeObtienenLasSilabasQueSeEscucharan() {
+		mJuegoViewModel.init();
+
 		verify(mJuegoViewModel.appGame).getSilabes();
+	}
+
+	@Test
+	public void alIniciarSeLanzaraUnEventoDeActualizacionALasCincoSilabas() {
+		mJuegoViewModel.init();
+
 		verify(onChangeListener).onChange("silaba1Tag", caSilaba);
 	}
 

@@ -18,4 +18,9 @@ public interface SilabesGame
 	List<List<SilabaDto>> getSilabesGroup();
 	void establecerGrupoSilabasSeleccionado(List<SilabaDto> agrupacionSilabasDto);
 	String getExplannationJuego();
+	String getExplicacionPruebaCompletarPalabras();
+	String getPalabraPendienteDeCompletar();
+	Boolean playCompletar(SilabaDto silabaDto);
+	String getPalabraPendienteCompleta();
+	Boolean accomplishedCompletarPalabra();
 }
