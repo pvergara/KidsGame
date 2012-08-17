@@ -28,6 +28,8 @@ public class CurrentSilabesGame implements SilabesGame {
 	private String mExplicacionJuego;
 	private PruebaCompletarPalabrasConSilabas completarPalabras;
 	private Collection<Palabra> palabras;
+	private Palabra palabraIncompleta;
+	private Palabra palabraCompleta;
 
 	public CurrentSilabesGame() {
 		mUsuario = new Usuario("Sofía");
@@ -142,8 +144,9 @@ public class CurrentSilabesGame implements SilabesGame {
 
 	public String getPalabraPendienteDeCompletar() {
 		InformacionPendiente ip = completarPalabras.getInformacionPendiente();
-		Palabra palabra = ip.getPalabraIncompleta();
-		return palabra.toRepresentacion().toString();
+		palabraIncompleta = ip.getPalabraIncompleta();
+		palabraCompleta = ip.getPalabraCompleta();
+		return palabraIncompleta.toRepresentacion().toString();
 	}
 
 	public Boolean playCompletar(SilabaDto silabaDto) {
@@ -151,9 +154,7 @@ public class CurrentSilabesGame implements SilabesGame {
 	}
 
 	public String getPalabraPendienteCompleta() {
-		InformacionPendiente ip = completarPalabras.getInformacionPendiente();
-		Palabra palabra = ip.getPalabraCompleta();
-		return palabra.toRepresentacion().toString();
+		return palabraCompleta.toRepresentacion().toString();
 	}
 
 	public Boolean accomplishedCompletarPalabra() {

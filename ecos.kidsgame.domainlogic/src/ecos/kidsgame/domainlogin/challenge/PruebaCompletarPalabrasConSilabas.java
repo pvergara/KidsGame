@@ -24,7 +24,7 @@ public class PruebaCompletarPalabrasConSilabas {
 				break;
 			}
 		}
-		palabra.sustituirSilabaPorSilaba(silabaSeleccionada, new Silaba(Fonema.desde(""), Representacion.desde("")));
+		palabra.sustituirSilabaPorSilaba(silabaSeleccionada, new Silaba(Fonema.desde(""), Representacion.desde("__")));
 		return silabaSeleccionada;
 	}
 
@@ -69,6 +69,7 @@ public class PruebaCompletarPalabrasConSilabas {
 		if (mEstado == EstadoDeLaPrueba.Finalizada)
 			return null;
 
+		//TODO: No debería extraer mas palabras hasta que no se acierte la correcta... esto está mal
 		InformacionPendiente informacionPendienteDeLaPrueba = extraerUnaPalabraDeLaColeccionQueContengaSilaba(
 				mPalabrasPendientesDeJugar, mSilabas);
 

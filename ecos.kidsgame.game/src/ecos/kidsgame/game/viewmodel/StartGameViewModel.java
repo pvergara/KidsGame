@@ -10,6 +10,7 @@ import ecos.framework.Binding.OnChangeListener;
 import ecos.framework.Speech.SpeechEngine;
 import ecos.kidsgame.appdomain.Game.SilabesGame;
 import ecos.kidsgame.appdomain.Game.Dto.SilabaDto;
+import ecos.kidsgame.game.CompletarPalabraActivity;
 import ecos.kidsgame.game.EncontrarSilabaActivity;
 import ecos.kidsgame.game.JuegoActivity;
 import ecos.kidsgame.game.StartGameActivity;
@@ -68,6 +69,11 @@ public class StartGameViewModel {
 	// Command
 	public void explicar() {
 		speechEngine.speak(mExplicacion);
+	}
+
+	// Command
+	public void iniciarTerceraPrueba(StartGameActivity currentContext) {
+		mActivityHandler.showActivity(currentContext, CompletarPalabraActivity.class);
 	}
 
 }

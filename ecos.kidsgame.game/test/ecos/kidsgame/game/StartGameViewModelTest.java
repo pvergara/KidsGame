@@ -124,4 +124,13 @@ public class StartGameViewModelTest {
 		startGameViewModel.explicar();
 		verify(speechEngineMocked).speak(explicacion);
 	}
+	
+	@Test
+	public void alInvocarIniciarTerceraPruebaSePideAbrirCompletarPalabraActivity(){
+		startGameViewModel.init();
+		startGameViewModel.iniciarTerceraPrueba(currectContextMocked);
+		
+		verify(activityHandlerMocked).showActivity(currectContextMocked, CompletarPalabraActivity.class);
+			
+	}
 }

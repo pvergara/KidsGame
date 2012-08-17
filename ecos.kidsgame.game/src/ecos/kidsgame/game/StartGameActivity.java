@@ -79,6 +79,10 @@ public class StartGameActivity extends RoboActivity {
 		mStartGameActivityViewModel.iniciarPrimeraPrueba(StartGameActivity.this);
 	}
 
+	public void terceraPruebaClick(View v) {
+		mStartGameActivityViewModel.iniciarTerceraPrueba(StartGameActivity.this);
+	}
+
 	protected void establecerOnClickListener(RadioGroup agrupacionSilabas, OnClickListener agrupacionClick, int i) {
 		View v = agrupacionSilabas.getChildAt(i);
 		v.setOnClickListener(agrupacionClick);

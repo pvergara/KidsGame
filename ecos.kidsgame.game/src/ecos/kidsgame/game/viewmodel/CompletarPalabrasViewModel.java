@@ -105,4 +105,8 @@ public class CompletarPalabrasViewModel {
 		}
 	}
 
+	public BindingManager getBindingManager() {
+		return bindingManager;
+	}
+
 }

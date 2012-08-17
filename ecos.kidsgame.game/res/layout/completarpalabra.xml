@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/completar_text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/juegoBoton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/textView1"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="29dp"
+            android:enabled="false"
+            android:onClick="jugarClick"
+            android:text="@string/silabas_ca" />
+
+        <Button
+            android:id="@+id/juegoBoton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/juegoBoton1"
+            android:layout_centerHorizontal="true"
+            android:enabled="false"
+            android:onClick="jugarClick"
+            android:text="@string/silabas_ce" />
+
+        <Button
+            android:id="@+id/juegoBoton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/juegoBoton2"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="23dp"
+            android:enabled="false"
+            android:onClick="jugarClick"
+            android:text="@string/silabas_ci" />
+
+        <Button
+            android:id="@+id/juegoBoton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_below="@+id/juegoBoton1"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="44dp"
+            android:enabled="false"
+            android:onClick="jugarClick"
+            android:text="@string/silabas_co" />
+
+        <Button
+            android:id="@+id/juegoBoton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/juegoBoton4"
+            android:layout_alignBottom="@+id/juegoBoton4"
+            android:layout_marginLeft="19dp"
+            android:layout_toRightOf="@+id/juegoBoton2"
+            android:enabled="false"
+            android:onClick="jugarClick"
+            android:text="@string/silabas_cu" />
+
+        <TextView
+            android:id="@+id/palabra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="98dp"
+            android:text="@string/completar_palabra"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/FrameLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#30603333"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+
+
+
+
+        <Button
+            android:id="@+id/explicar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="10dp"
+            android:minWidth="20dp"
+            android:onClick="explicarClick"
+            android:text="@string/explicacion"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/commonIniciar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="iniciarClick"
+            android:text="@string/iniciar" />
+
+    </FrameLayout>
+    
+</TableLayout>

@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1.00" >
-
+
         <RadioGroup
             android:id="@+id/agrupacionSilabas"
             android:layout_width="wrap_content"
@@ -191,24 +191,40 @@
             android:onClick="explicacionClick"
             android:text="@string/explicacion"
             android:textStyle="bold" />
-
-        <Button
-            android:id="@id/main_iniciar"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="10dp"
-            android:onClick="primeraPruebaClick"
-            android:text="@string/iniciar_juego" />
-
-        <Button
-            android:id="@+id/main_encontrar"
-            android:layout_width="100dp"
+
+        <LinearLayout
+            android:id="@+id/ly"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginRight="10dp"
-            android:onClick="segundaPruebaClick"
-            android:text="@string/main_encontrar" />
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@id/main_iniciar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:onClick="primeraPruebaClick"
+                android:text="@string/iniciar_juego" />
+
+            <Button
+                android:id="@+id/main_encontrar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:onClick="segundaPruebaClick"
+                android:text="@string/main_encontrar" />
+
+            <Button
+                android:id="@+id/main_completar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:onClick="terceraPruebaClick"
+                android:text="@string/main_completar" />
+
+        </LinearLayout>
     </FrameLayout>
 
 </TableLayout>
