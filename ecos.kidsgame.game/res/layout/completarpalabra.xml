@@ -81,8 +81,7 @@
             android:layout_alignLeft="@+id/textView1"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="98dp"
-            android:text="@string/completar_palabra"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:text="@string/completar_palabra" />
 
     </RelativeLayout>
 
