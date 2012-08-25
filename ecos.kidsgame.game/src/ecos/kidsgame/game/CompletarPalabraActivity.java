@@ -54,6 +54,7 @@ public class CompletarPalabraActivity extends RoboActivity {
 	private BindingAction baSilabas = new BindingAction() {
 		
 		public void fireAction(Object sourceElementValue) {
+			@SuppressWarnings("unchecked")
 			List<SilabaDto> silabas = (List<SilabaDto>) sourceElementValue;
 			establecerTagDe(mSilaba1,silabas.get(0));
 			establecerTagDe(mSilaba2,silabas.get(1));

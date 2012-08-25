@@ -11,10 +11,10 @@ import ecos.kidsgame.domainlogin.Palabra;
 import ecos.kidsgame.domainlogin.Representacion;
 import ecos.kidsgame.domainlogin.Silaba;
 
-public class AgrupacionDeSilabasFactory {
+public class AgrupacionFactory {
 
 	private List<List<Silaba>> mAgrupacionDeSilabas = new ArrayList<List<Silaba>>();
-	private List<String> mVocales = new ArrayList<String>(Arrays.asList(new String[]{"A","E","I","O","U"}));
+	private List<String> mVocales = new ArrayList<String>(Arrays.asList(new String[] { "A", "E", "I", "O", "U" }));
 
 	public List<List<Silaba>> create() {
 		mAgrupacionDeSilabas.add(generarGrupo("M<vocal>"));
@@ -27,10 +27,10 @@ public class AgrupacionDeSilabasFactory {
 		mAgrupacionDeSilabas.add(generarGrupo("F<vocal>"));
 		mAgrupacionDeSilabas.add(generarGrupo("T<vocal>"));
 		mAgrupacionDeSilabas.add(generarGrupo("X<vocal>"));
-		
+
 		mAgrupacionDeSilabas.add(generarGrupo("B<vocal>"));
 		mAgrupacionDeSilabas.add(generarGrupo("V<vocal>"));
-		
+
 		mAgrupacionDeSilabas.add(generarGrupo("Y<vocal>"));
 		mAgrupacionDeSilabas.add(generarGrupo("LL<vocal>"));
 
@@ -44,7 +44,7 @@ public class AgrupacionDeSilabasFactory {
 		mAgrupacionDeSilabas.add(generarGrupo("J<vocal>"));
 		mAgrupacionDeSilabas.add(generarGrupo("G<vocal>"));
 		mAgrupacionDeSilabas.add(generarGrupo("GU<vocal>"));
-		
+
 		return mAgrupacionDeSilabas;
 	}
 
@@ -58,28 +58,32 @@ public class AgrupacionDeSilabasFactory {
 	}
 
 	public List<Agrupacion> createCompleto() {
-		create();
 		List<Agrupacion> resultado = new ArrayList<Agrupacion>();
-		for (List<Silaba> grupoDeSilabas : mAgrupacionDeSilabas) {
-			Agrupacion agrupacion = new Agrupacion();
-			agrupacion.setSilabas(grupoDeSilabas);
-			List<Palabra> grupoDePalabras = generarPalabrasCon(grupoDeSilabas);
-			agrupacion.setPalabras(grupoDePalabras);
-			
-			resultado.add(agrupacion);
-		}
-		
+		Agrupacion agrupacion = new Agrupacion();
+		agrupacion.setSilabas(generarGrupo("M<Vocal>"));
+		agrupacion.setPalabras(getPalabrasCon("M"));
+		resultado.add(agrupacion);
 		return resultado;
 	}
 
-	private List<Palabra> generarPalabrasCon(List<Silaba> grupoDeSilabas) {
-		List<Palabra> palabras = new ArrayList<Palabra>();
-		for (Silaba silaba : grupoDeSilabas) {
-			Collection<Fonema> fonemas = new ArrayList<Fonema>(Arrays.asList(new Fonema[]{silaba.getFonema(),silaba.getFonema()}));
-			Palabra palabra = new Palabra(fonemas);
-			palabras.add(palabra);
+	private List<Palabra> getPalabrasCon(String consonantes) {
+		List<Palabra> resultado = new ArrayList<Palabra>();
+		if (consonantes.toLowerCase().compareTo("m") == 0) {
+			resultado.add(generarPalabraCon(new String[] { "MA", "PA" }));
+			resultado.add(generarPalabraCon(new String[] { "ME", "SA" }));
+			resultado.add(generarPalabraCon(new String[] { "MI", "RAR" }));
+			resultado.add(generarPalabraCon(new String[] { "MO", "LI", "NO" }));
+			resultado.add(generarPalabraCon(new String[] { "MU", "LA" }));
 		}
-		return palabras;
+		return resultado;
+	}
+
+	private Palabra generarPalabraCon(String[] silabasString) {
+		Collection<Fonema> fonemas = new ArrayList<Fonema>();
+		for (String silabaString : silabasString) {
+			fonemas.add(Fonema.desde(silabaString));
+		}
+		return new Palabra(fonemas);
 	}
 
 }

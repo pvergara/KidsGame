@@ -2,15 +2,15 @@ package ecos.kidsgame.domainlogin;
 
 import java.util.List;
 
-import ecos.kidsgame.domainlogin.factories.AgrupacionDeSilabasFactory;
+import ecos.kidsgame.domainlogin.factories.AgrupacionFactory;
 
 public class JuegoDeSilabas {
 
 	private static JuegoDeSilabas mJuego;
 
 	// @Inject
-	private AgrupacionDeSilabasFactory agrupacionDeSilabasFactory = new AgrupacionDeSilabasFactory();
-	private AgrupacionDeSilabasFactory agrupacionFactory = new AgrupacionDeSilabasFactory();
+	private AgrupacionFactory agrupacionDeSilabasFactory = new AgrupacionFactory();
+	private AgrupacionFactory agrupacionFactory = new AgrupacionFactory();
 	private List<List<Silaba>> agrupacionDeSilabas;
 	private List<Agrupacion> mAgrupaciones;
 

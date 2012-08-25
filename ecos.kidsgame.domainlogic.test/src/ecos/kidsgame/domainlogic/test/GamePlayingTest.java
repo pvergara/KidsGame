@@ -93,7 +93,7 @@ public class GamePlayingTest {
 
 	private String generarExplicacionDelJuego() {
 		return String.format(
-				"Hola {0} este es el juego de las sílabas. Tienes que pasar por varias pruebas para terminarlo",
+				"Hola %s este es el juego de las sílabas. Tienes que pasar por varias pruebas para terminarlo",
 				usuario.getNombre());
 	}
 
