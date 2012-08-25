@@ -2,47 +2,50 @@ package ecos.kidsgame.domainlogin.factories;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
+import ecos.kidsgame.domainlogin.Agrupacion;
 import ecos.kidsgame.domainlogin.Fonema;
+import ecos.kidsgame.domainlogin.Palabra;
 import ecos.kidsgame.domainlogin.Representacion;
 import ecos.kidsgame.domainlogin.Silaba;
 
 public class AgrupacionDeSilabasFactory {
 
-	private List<List<Silaba>> agrupacionDeSilabas = new ArrayList<List<Silaba>>();
+	private List<List<Silaba>> mAgrupacionDeSilabas = new ArrayList<List<Silaba>>();
 	private List<String> mVocales = new ArrayList<String>(Arrays.asList(new String[]{"A","E","I","O","U"}));
 
 	public List<List<Silaba>> create() {
-		agrupacionDeSilabas.add(generarGrupo("M<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("N<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("Ñ<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("L<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("P<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("S<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("D<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("F<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("T<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("X<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("M<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("N<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("Ñ<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("L<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("P<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("S<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("D<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("F<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("T<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("X<vocal>"));
 		
-		agrupacionDeSilabas.add(generarGrupo("B<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("V<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("B<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("V<vocal>"));
 		
-		agrupacionDeSilabas.add(generarGrupo("Y<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("LL<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("Y<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("LL<vocal>"));
 
-		agrupacionDeSilabas.add(generarGrupo("CH<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("CH<vocal>"));
 
-		agrupacionDeSilabas.add(generarGrupo("Z<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("C<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("K<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("QU<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("Z<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("C<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("K<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("QU<vocal>"));
 
-		agrupacionDeSilabas.add(generarGrupo("J<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("G<vocal>"));
-		agrupacionDeSilabas.add(generarGrupo("GU<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("J<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("G<vocal>"));
+		mAgrupacionDeSilabas.add(generarGrupo("GU<vocal>"));
 		
-		return agrupacionDeSilabas;
+		return mAgrupacionDeSilabas;
 	}
 
 	private ArrayList<Silaba> generarGrupo(String patron) {
@@ -52,6 +55,31 @@ public class AgrupacionDeSilabasFactory {
 			gruposSilabas.add(new Silaba(Fonema.desde(silabaString), Representacion.desde(silabaString)));
 		}
 		return gruposSilabas;
+	}
+
+	public List<Agrupacion> createCompleto() {
+		create();
+		List<Agrupacion> resultado = new ArrayList<Agrupacion>();
+		for (List<Silaba> grupoDeSilabas : mAgrupacionDeSilabas) {
+			Agrupacion agrupacion = new Agrupacion();
+			agrupacion.setSilabas(grupoDeSilabas);
+			List<Palabra> grupoDePalabras = generarPalabrasCon(grupoDeSilabas);
+			agrupacion.setPalabras(grupoDePalabras);
+			
+			resultado.add(agrupacion);
+		}
+		
+		return resultado;
+	}
+
+	private List<Palabra> generarPalabrasCon(List<Silaba> grupoDeSilabas) {
+		List<Palabra> palabras = new ArrayList<Palabra>();
+		for (Silaba silaba : grupoDeSilabas) {
+			Collection<Fonema> fonemas = new ArrayList<Fonema>(Arrays.asList(new Fonema[]{silaba.getFonema(),silaba.getFonema()}));
+			Palabra palabra = new Palabra(fonemas);
+			palabras.add(palabra);
+		}
+		return palabras;
 	}
 
 }

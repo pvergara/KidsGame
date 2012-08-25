@@ -8,7 +8,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import ecos.kidsgame.domainlogin.Agrupacion;
 import ecos.kidsgame.domainlogin.JuegoDeSilabas;
+import ecos.kidsgame.domainlogin.Palabra;
 import ecos.kidsgame.domainlogin.Silaba;
 
 public class JuegoDeSilabasTest {
@@ -28,9 +30,25 @@ public class JuegoDeSilabasTest {
 
 	@Test
 	public void comoSeObtienenLosGruposDeSilabasDelJuego() {
-		List<List<Silaba>> agrupacionDeSilabas = juegoDeSilabas.getAgrupacionDeSilabas(); 
+		List<Agrupacion> agrupaciones = juegoDeSilabas.getAgrupaciones(); 
+		assertNotNull(agrupaciones);
+		assertTrue(agrupaciones.size()>0);
+
+		List<Silaba> agrupacionDeSilabas = agrupaciones.get(0).getSilabas(); 
 		assertNotNull(agrupacionDeSilabas);
 		assertTrue(agrupacionDeSilabas.size()>0);
+		
+	}
+
+	@Test
+	public void comoSeObtienenLasGruposDePalabrasDelJuego() {
+		List<Agrupacion> agrupaciones = juegoDeSilabas.getAgrupaciones(); 
+		assertNotNull(agrupaciones);
+		assertTrue(agrupaciones.size()>0);
+
+		List<Palabra> palabrasAgrupadas = agrupaciones.get(0).getPalabras();
+		assertNotNull(palabrasAgrupadas);
+		assertTrue(palabrasAgrupadas.size()>0);
 		
 	}
 
