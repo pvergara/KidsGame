@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/ecos.kidsgame.domainlogic"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ecos.kidsgame.domainlogic"/>
 	<classpathentry kind="lib" path="libs/asm-3.3.1.jar"/>
 	<classpathentry kind="lib" path="libs/cglib-2.2.2.jar"/>
 	<classpathentry kind="lib" path="libs/junit-4.8.2.jar"/>
