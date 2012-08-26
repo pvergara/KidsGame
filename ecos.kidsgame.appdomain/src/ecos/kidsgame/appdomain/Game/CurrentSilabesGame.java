@@ -30,7 +30,7 @@ public class CurrentSilabesGame implements SilabesGame {
 	private Usuario mUsuario;
 	private String mExplicacionJuego;
 	private PruebaCompletarPalabrasConSilabas completarPalabras;
-	private Collection<Palabra> palabras;
+	private Collection<Palabra> mPalabras;
 	private Palabra palabraIncompleta;
 	private Palabra palabraCompleta;
 
@@ -43,7 +43,7 @@ public class CurrentSilabesGame implements SilabesGame {
 				new Silaba(Fonema.desde("co"), Representacion.desde("Co")),
 				new Silaba(Fonema.desde("cu"), Representacion.desde("Cu")) }));
 
-		palabras = new ArrayList<Palabra>(Arrays.asList(new Palabra[]{
+		mPalabras = new ArrayList<Palabra>(Arrays.asList(new Palabra[]{
 				new Palabra(Arrays.asList(new Fonema[]{Fonema.desde("CA"),Fonema.desde("SA")})),
 				new Palabra(Arrays.asList(new Fonema[]{Fonema.desde("CE"),Fonema.desde("RE"),Fonema.desde("ZA")})),
 				new Palabra(Arrays.asList(new Fonema[]{Fonema.desde("CI"),Fonema.desde("MA")})),
@@ -55,7 +55,7 @@ public class CurrentSilabesGame implements SilabesGame {
 		mExplicacionJuego = juego.getExplicacion();
 		escucharLasSilabas = juego.getPruebaEscucharLasSilabas();
 		encontrarLasSilabas = juego.getSeleccionarLasSilabasIndicadas();
-		completarPalabras = juego.getCompletarPalabrasConSilabas(palabras);
+		completarPalabras = juego.getCompletarPalabrasConSilabas(mPalabras);
 	}
 
 	public List<SilabaDto> getSilabes() {
@@ -162,10 +162,10 @@ public class CurrentSilabesGame implements SilabesGame {
 		return silabasDto;
 	}
 
-	public void establecerGrupoSilabasSeleccionado(List<SilabaDto> agrupacionSilabasDto) {
+	public void establecerGrupoSilabasSeleccionado(AgrupacionDto agrupacionSilabasDto) {
 		silabas.clear();
 
-		for (SilabaDto silabaDto : agrupacionSilabasDto) {
+		for (SilabaDto silabaDto : agrupacionSilabasDto.silabasDto) {
 			silabas.add(generarSilaba(silabaDto));
 		}
 
@@ -173,7 +173,23 @@ public class CurrentSilabesGame implements SilabesGame {
 		mExplicacionJuego = juego.getExplicacion();
 		escucharLasSilabas = juego.getPruebaEscucharLasSilabas();
 		encontrarLasSilabas = juego.getSeleccionarLasSilabasIndicadas();
-		completarPalabras = juego.getCompletarPalabrasConSilabas(palabras);
+		completarPalabras = juego.getCompletarPalabrasConSilabas(generarPalabras(agrupacionSilabasDto.palabrasDto));
+	}
+
+	private Collection<Palabra> generarPalabras(List<PalabraDto> palabrasDto) {
+		Collection<Palabra> palabras = new ArrayList<Palabra>();
+		for (PalabraDto palabraDto : palabrasDto) {
+			palabras.add(generarPalabra(palabraDto));
+		}
+		return palabras;
+	}
+
+	private Palabra generarPalabra(PalabraDto palabraDto) {
+		Collection<Fonema> fonemas = new ArrayList<Fonema>();
+		for (SilabaDto silaba : palabraDto.getSilabas()) {
+			fonemas.add(Fonema.desde(silaba.getFonema()));
+		}
+		return new Palabra(fonemas);
 	}
 
 	public String getExplannationJuego() {

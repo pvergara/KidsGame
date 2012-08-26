@@ -17,6 +17,7 @@ import com.google.inject.Inject;
 
 import ecos.framework.Binding.BindingAction;
 import ecos.framework.Binding.BindingManager;
+import ecos.kidsgame.appdomain.Game.Dto.AgrupacionDto;
 import ecos.kidsgame.appdomain.Game.Dto.SilabaDto;
 import ecos.kidsgame.game.viewmodel.StartGameViewModel;
 
@@ -39,7 +40,7 @@ public class StartGameActivity extends RoboActivity {
 		setContentView(R.layout.main);
 
 		mBidingManager = mStartGameActivityViewModel.getBindingManager();
-		mBidingManager.manageOnChangeFor("agrupacionSilabasTag", baAgrupacionsilabasTag, this);
+		mBidingManager.manageOnChangeFor("agrupacionesTag", baAgrupacionesTag, this);
 
 		mStartGameActivityViewModel.init();
 	}
@@ -56,18 +57,18 @@ public class StartGameActivity extends RoboActivity {
 		return result.toString();
 	}
 
-	private BindingAction baAgrupacionsilabasTag = new BindingAction() {
+	private BindingAction baAgrupacionesTag = new BindingAction() {
 
 		public void fireAction(Object sourceElementValue) {
 			@SuppressWarnings("unchecked")
-			List<List<SilabaDto>> agrupacion = (List<List<SilabaDto>>) sourceElementValue;
+			List<AgrupacionDto> agrupacion = (List<AgrupacionDto>) sourceElementValue;
 			mAgrupacionSilabas.setTag(agrupacion);
 			mAgrupacionSilabas.removeAllViews();
 			anhadirRadioButtonA(mAgrupacionSilabas, agrupacion.size(), StartGameActivity.this);
 			int i = 0;
-			for (List<SilabaDto> grupoDeSilabas : agrupacion) {
-				establecerTagEnViewDelGrupo(mAgrupacionSilabas, grupoDeSilabas, i);
-				establecerTextEnViewDelGrupo(mAgrupacionSilabas, grupoDeSilabas, i);
+			for (AgrupacionDto grupoDeDatosDelJuego : agrupacion) {
+				establecerTagEnViewDelGrupo(mAgrupacionSilabas, grupoDeDatosDelJuego, i);
+				establecerTextEnViewDelGrupo(mAgrupacionSilabas, grupoDeDatosDelJuego, i);
 				establecerOnClickListener(mAgrupacionSilabas,(OnClickListener)agrupacionClick,i);
 				i++;
 			}
@@ -89,22 +90,21 @@ public class StartGameActivity extends RoboActivity {
 		
 	}
 
-	protected void establecerTextEnViewDelGrupo(RadioGroup agrupacionSilabas, List<SilabaDto> grupoDeSilabas, int i) {
+	protected void establecerTextEnViewDelGrupo(RadioGroup agrupacionSilabas, AgrupacionDto grupoDeDatosDelJuego, int i) {
 		TextView text = (TextView) agrupacionSilabas.getChildAt(i);
-		text.setText(arrayToString2(grupoDeSilabas, ","));
+		text.setText(arrayToString2(grupoDeDatosDelJuego.silabasDto, ","));
 
 	}
 
 	protected OnClickListener agrupacionClick = new OnClickListener() {
 		
-		@SuppressWarnings("unchecked")
 		public void onClick(View v) {
-			mStartGameActivityViewModel.seleccionarGrupo((List<SilabaDto>) v.getTag());
+			mStartGameActivityViewModel.seleccionarGrupo((AgrupacionDto) v.getTag());
 			
 		}
 	};
 
-	protected void establecerTagEnViewDelGrupo(RadioGroup agrupacionSilabas, List<SilabaDto> grupoDeSilabas, int i) {
+	protected void establecerTagEnViewDelGrupo(RadioGroup agrupacionSilabas, AgrupacionDto grupoDeSilabas, int i) {
 		View view = agrupacionSilabas.getChildAt(i);
 		view.setTag(grupoDeSilabas);
 	}
@@ -125,9 +125,8 @@ public class StartGameActivity extends RoboActivity {
 	}
 
 	public void seleccionarGrupo(View grupoSilaba) {
-		@SuppressWarnings("unchecked")
-		List<SilabaDto> tag = (List<SilabaDto>) grupoSilaba.getTag();
-		List<SilabaDto> agrupacionSilabasDto = tag;
+		AgrupacionDto tag = (AgrupacionDto) grupoSilaba.getTag();
+		AgrupacionDto agrupacionSilabasDto = tag;
 		mStartGameActivityViewModel.seleccionarGrupo(agrupacionSilabasDto);
 	}
 

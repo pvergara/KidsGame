@@ -10,12 +10,14 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import ecos.framework.ActivityHandler;
 import ecos.framework.Binding.BindingManager;
 import ecos.framework.Binding.OnChangeListener;
 import ecos.framework.Speech.SpeechEngine;
 import ecos.kidsgame.appdomain.Game.SilabesGame;
+import ecos.kidsgame.appdomain.Game.Dto.AgrupacionDto;
 import ecos.kidsgame.appdomain.Game.Dto.SilabaDto;
 import ecos.kidsgame.game.viewmodel.StartGameViewModel;
 
@@ -83,7 +85,8 @@ public class StartGameViewModelTest {
 	public void alIniciarSeNotificaLaModificacionEnLosGruposDeSilabas() {
 		startGameViewModel.init();
 
-		verify(changeListenerMocked).onChange("agrupacionSilabasTag", agrupacionSilabas);
+//		verify(changeListenerMocked).onChange("agrupacionesTag", agrupaciones);
+		verify(changeListenerMocked).onChange(Mockito.anyString(), Mockito.any(List.class));
 	}
 
 	@Test
@@ -110,8 +113,7 @@ public class StartGameViewModelTest {
 
 	@Test
 	public void alSeleccionarUnGrupoDeSilabasSeEstableceEsteNuevoGrupoParaLaRealizacionDeLasPruebas() {
-		@SuppressWarnings("unchecked")
-		List<SilabaDto> agrupacionSilabasDto = mock(List.class);
+		AgrupacionDto agrupacionSilabasDto = mock(AgrupacionDto.class);
 		startGameViewModel.init();
 		startGameViewModel.seleccionarGrupo(agrupacionSilabasDto);
 

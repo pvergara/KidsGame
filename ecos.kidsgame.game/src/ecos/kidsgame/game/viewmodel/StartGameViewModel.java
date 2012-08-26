@@ -9,7 +9,7 @@ import ecos.framework.Binding.BindingManager;
 import ecos.framework.Binding.OnChangeListener;
 import ecos.framework.Speech.SpeechEngine;
 import ecos.kidsgame.appdomain.Game.SilabesGame;
-import ecos.kidsgame.appdomain.Game.Dto.SilabaDto;
+import ecos.kidsgame.appdomain.Game.Dto.AgrupacionDto;
 import ecos.kidsgame.game.CompletarPalabraActivity;
 import ecos.kidsgame.game.EncontrarSilabaActivity;
 import ecos.kidsgame.game.JuegoActivity;
@@ -29,22 +29,23 @@ public class StartGameViewModel {
 	@Inject
 	public BindingManager bindingManager;
 
-	private List<List<SilabaDto>> mAgrupacionDeSilabas;
-
 	private OnChangeListener mChangeListener;
 
 	private String mExplicacion;
 
+	private List<AgrupacionDto> mAgrupaciones;
+
 	public void init() {
 		speechEngine.tryInit();
-		mAgrupacionDeSilabas = mAppGame.getSilabesGroup();
+		mAppGame.getSilabesGroup();
+		mAgrupaciones = mAppGame.getGameDataGroups();
 		mChangeListener = bindingManager.getOnChangeListener();
 		mExplicacion = mAppGame.getExplannationJuego();
-		actualizarAgrupacionSilabas();
+		actualizarAgrupaciones();
 	}
 
-	private void actualizarAgrupacionSilabas() {
-		mChangeListener.onChange("agrupacionSilabasTag", mAgrupacionDeSilabas);
+	private void actualizarAgrupaciones() {
+		mChangeListener.onChange("agrupacionesTag", mAgrupaciones);
 	}
 
 	public BindingManager getBindingManager() {
@@ -62,7 +63,7 @@ public class StartGameViewModel {
 	}
 
 	// Command
-	public void seleccionarGrupo(List<SilabaDto> agrupacionSilabasDto) {
+	public void seleccionarGrupo(AgrupacionDto agrupacionSilabasDto) {
 		mAppGame.establecerGrupoSilabasSeleccionado(agrupacionSilabasDto);
 	}
 
