@@ -60,4 +60,8 @@ public class Palabra implements Cloneable {
 		obj = new Palabra(fonemas);
 		return obj;
 	}
+
+	public List<Silaba> getSilabas() {
+		return mSilabas;
+	}
 }

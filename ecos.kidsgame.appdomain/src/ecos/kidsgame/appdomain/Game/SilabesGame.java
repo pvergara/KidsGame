@@ -2,6 +2,7 @@ package ecos.kidsgame.appdomain.Game;
 
 import java.util.List;
 
+import ecos.kidsgame.appdomain.Game.Dto.AgrupacionDto;
 import ecos.kidsgame.appdomain.Game.Dto.SilabaDto;
 
 
@@ -23,4 +24,5 @@ public interface SilabesGame
 	Boolean playCompletar(SilabaDto silabaDto);
 	String getPalabraPendienteCompleta();
 	Boolean accomplishedCompletarPalabra();
+	List<AgrupacionDto> getGameDataGroups();
 }

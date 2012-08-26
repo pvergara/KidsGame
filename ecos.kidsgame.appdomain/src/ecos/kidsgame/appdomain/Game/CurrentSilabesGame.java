@@ -5,7 +5,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import ecos.kidsgame.appdomain.Game.Dto.AgrupacionDto;
+import ecos.kidsgame.appdomain.Game.Dto.PalabraDto;
 import ecos.kidsgame.appdomain.Game.Dto.SilabaDto;
+import ecos.kidsgame.domainlogin.Agrupacion;
 import ecos.kidsgame.domainlogin.EstadoDeLaPrueba;
 import ecos.kidsgame.domainlogin.Fonema;
 import ecos.kidsgame.domainlogin.InformacionPendiente;
@@ -110,14 +113,53 @@ public class CurrentSilabesGame implements SilabesGame {
 	public List<List<SilabaDto>> getSilabesGroup() {
 		List<List<Silaba>> agrupacionSilabas = JuegoDeSilabas.getInstancia().getAgrupacionDeSilabas();
 		List<List<SilabaDto>> agrupacionSilabasDto = new ArrayList<List<SilabaDto>>();
-		for (List<Silaba> agrupacion : agrupacionSilabas) {
-			List<SilabaDto> agrupacionDto = new ArrayList<SilabaDto>();
-			for (Silaba silaba : agrupacion) {
-				agrupacionDto.add(generarSilabaDto(silaba));
-			}
-			agrupacionSilabasDto.add(agrupacionDto);
+		for (List<Silaba> grupoDeSilabas : agrupacionSilabas) {
+			agrupacionSilabasDto.add(generarSilabasDto(grupoDeSilabas));
 		}
 		return agrupacionSilabasDto;
+	}
+
+
+	public List<AgrupacionDto> getGameDataGroups() {
+		List<Agrupacion> agrupaciones = JuegoDeSilabas.getInstancia().getAgrupaciones();
+		List<AgrupacionDto> agrupacionesDto = new ArrayList<AgrupacionDto>();
+		
+		for (Agrupacion agrupacion : agrupaciones) {
+			AgrupacionDto agrupacionDto = generarAgrupacionDto(agrupacion);
+			agrupacionesDto.add(agrupacionDto);
+		}
+		return agrupacionesDto;
+	}
+	
+	
+	private AgrupacionDto generarAgrupacionDto(Agrupacion agrupacion) {
+		AgrupacionDto resultado = new AgrupacionDto();
+		resultado.silabasDto = generarSilabasDto(agrupacion.getSilabas());
+		resultado.palabrasDto = generarPalabrasDto(agrupacion.getPalabras());
+		return resultado;
+	}
+
+	private List<PalabraDto> generarPalabrasDto(List<Palabra> palabras2) {
+		List<PalabraDto> palabrasDto = new ArrayList<PalabraDto>();
+		for (Palabra palabra : palabras2) {
+			palabrasDto.add(generarPalabraDto(palabra));
+		}
+		return palabrasDto;
+	}
+
+	private PalabraDto generarPalabraDto(Palabra palabra) {
+		PalabraDto palabraDto = new PalabraDto();
+		palabraDto.setTexto(palabra.toRepresentacion().toString());
+		palabraDto.setSilabas(generarSilabasDto(palabra.getSilabas()));
+		return palabraDto;
+	}
+
+	private List<SilabaDto> generarSilabasDto(List<Silaba> silabas2) {
+		List<SilabaDto> silabasDto = new ArrayList<SilabaDto>();
+		for (Silaba silaba : silabas2) {
+			silabasDto.add(generarSilabaDto(silaba));
+		}
+		return silabasDto;
 	}
 
 	public void establecerGrupoSilabasSeleccionado(List<SilabaDto> agrupacionSilabasDto) {
