@@ -3,9 +3,9 @@ package ecos.kidsgame.game;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.times;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +36,6 @@ public class CompletarPalabraViewModelTest {
 	private String palabraACompletar = "__labra";
 	private SilabaDto silaba;
 	private String palabraCompleta = "palabra";
-	private SpeakFinished speakFinished;
-
 	@Before
 	public void setUp() {
 		mCompletarPalabrasViewModel = new CompletarPalabrasViewModel();
@@ -57,10 +55,9 @@ public class CompletarPalabraViewModelTest {
 		when(appSilabesGameMocked.getPalabraPendienteCompleta()).thenReturn(palabraCompleta);
 
 		speechEngineMocked = mock(SpeechEngine.class);
-		speakFinished = mCompletarPalabrasViewModel.getOnSpeakFinishedSiguientePalabra();
 		Mockito.doAnswer(new Answer<Void>() {
 			public Void answer(InvocationOnMock invocation) throws Throwable {
-				speakFinished.fireFinished();
+				 mCompletarPalabrasViewModel.getCurrentOnSpeakFinished().fireFinished();
 				return null;
 			}
 		}).when(speechEngineMocked).speak(anyString(), any(SpeakFinished.class));
@@ -68,6 +65,7 @@ public class CompletarPalabraViewModelTest {
 		mCompletarPalabrasViewModel.speechEngine = speechEngineMocked;
 
 		silaba = mock(SilabaDto.class);
+		when(silaba.getTexto()).thenReturn("");
 	}
 
 	@Test
@@ -158,7 +156,23 @@ public class CompletarPalabraViewModelTest {
 		mCompletarPalabrasViewModel.jugar(silaba);
 
 		verify(speechEngineMocked)
-				.speak("Esa no es la sílaba correcta para completar la palabra. Vuelve a intentarlo.");
+				.speak("Incorrecto. Vuelve a intentarlo.",mCompletarPalabrasViewModel.getCurrentOnSpeakFinished());
+	}
+
+	@Test
+	public void alInvocarJugarSILaSilabaNOEsLaCorrectaSeMostraraLaPalabraQueSeCompondriaConLaSilabaIncorrectaYDespuesDeHablarSeVolveraAColocarLaPalabraConUnaSilabaMenos() {
+		mCompletarPalabrasViewModel.init();
+		mCompletarPalabrasViewModel.iniciar();
+		verify(changeListener,times(1)).onChange("Palabra", palabraACompletar);
+
+		String string="pe";
+		when(silaba.getTexto()).thenReturn(string);
+		when(appSilabesGameMocked.playCompletar(silaba)).thenReturn(false);
+
+		mCompletarPalabrasViewModel.jugar(silaba);
+
+		verify(changeListener).onChange("PalabraIncorrecta", palabraACompletar.replace("__", string));
+		verify(changeListener,times(2)).onChange("Palabra", palabraACompletar);
 	}
 
 	@Test
@@ -169,7 +183,7 @@ public class CompletarPalabraViewModelTest {
 		when(appSilabesGameMocked.playCompletar(silaba)).thenReturn(true);
 		mCompletarPalabrasViewModel.jugar(silaba);
 
-		verify(speechEngineMocked).speak(String.format("Perfecto. La palabra completa es %s.",palabraCompleta),speakFinished);
+		verify(speechEngineMocked).speak(String.format("Perfecto. La palabra completa es %s.",palabraCompleta),mCompletarPalabrasViewModel.getCurrentOnSpeakFinished());
 	}
 
 	@Test

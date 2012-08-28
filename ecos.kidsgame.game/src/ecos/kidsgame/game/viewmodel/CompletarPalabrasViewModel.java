@@ -28,7 +28,7 @@ public class CompletarPalabrasViewModel {
 	@Inject
 	public SpeechEngine speechEngine;
 
-	private String mPalabraACompletar;
+	private String mPalabraACompletar = "";
 
 	private String mPalabraCompleta;
 
@@ -39,10 +39,30 @@ public class CompletarPalabrasViewModel {
 		}
 	};
 
+	private String mPalabraIncorrecta;
+
+	private SpeakFinished mAccionPalabraIncorrecta = new SpeakFinished() {
+		public void fireFinished() {
+			mostrarPalabraIncompleta();
+		}
+	};
+
+	private SpeakFinished currentOnSpeakFinished;
+
 	// TODO: Esto o protected o private... PERO NO SE ME OCURRE COMO HACER PARA
 	// LLEGAR A ESTE MÉTODO SIN HACERLO PÚBLICO
-	public SpeakFinished getOnSpeakFinishedSiguientePalabra() {
-		return mOnSpeachSiguientePalabra;
+	public SpeakFinished getOnSpeakFinishedPalabraIncorrecta() {
+		return mAccionPalabraIncorrecta;
+	}
+
+	// TODO: Esto o protected o private... PERO NO SE ME OCURRE COMO HACER PARA
+	// LLEGAR A ESTE MÉTODO SIN HACERLO PÚBLICO
+	public SpeakFinished getCurrentOnSpeakFinished() {
+		return currentOnSpeakFinished;
+	}
+
+	protected void mostrarPalabraIncompleta() {
+		notificarPalabra();
 	}
 
 	public void init() {
@@ -98,11 +118,25 @@ public class CompletarPalabrasViewModel {
 	// Command!!!
 	public void jugar(SilabaDto silabaDto) {
 		if (!appGame.playCompletar(silabaDto)) {
-			speechEngine.speak("Esa no es la sílaba correcta para completar la palabra. Vuelve a intentarlo.");
+			mostrarPalabraIncorrecta(silabaDto);
+			actualizarCurrentOnSpeackFinished(mAccionPalabraIncorrecta);
+			speechEngine.speak("Incorrecto. Vuelve a intentarlo.", currentOnSpeakFinished);
 		} else {
+			actualizarCurrentOnSpeackFinished(mOnSpeachSiguientePalabra);
 			speechEngine.speak(String.format("Perfecto. La palabra completa es %s.", mPalabraCompleta),
-					mOnSpeachSiguientePalabra);
+					currentOnSpeakFinished);
 		}
+	}
+
+	private void actualizarCurrentOnSpeackFinished(SpeakFinished mOnSpeachSiguientePalabra2) {
+		currentOnSpeakFinished = mOnSpeachSiguientePalabra2;
+	}
+
+	private void mostrarPalabraIncorrecta(SilabaDto silabaDto) {
+		String texto = silabaDto.getTexto();
+		mPalabraIncorrecta = mPalabraACompletar;
+		mPalabraIncorrecta = mPalabraIncorrecta.replace("__", texto);
+		mOnChangeListener.onChange("PalabraIncorrecta", mPalabraIncorrecta);
 	}
 
 	public BindingManager getBindingManager() {
