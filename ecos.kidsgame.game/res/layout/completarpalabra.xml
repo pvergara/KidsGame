@@ -73,14 +73,15 @@
             android:enabled="false"
             android:onClick="jugarClick"
             android:text="@string/silabas_cu" />
-
+
         <TextView
             android:id="@+id/palabra"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView1"
             android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
             android:layout_marginBottom="98dp"
+            android:gravity="center_vertical|center_horizontal"
             android:text="@string/completar_palabra" />
 
     </RelativeLayout>

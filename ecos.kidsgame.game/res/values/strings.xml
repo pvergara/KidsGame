@@ -19,6 +19,6 @@
     <string name="explicacion">\?</string>
     <string name="main_completar">3ª</string>
     <string name="completar_text">Completa la palabra</string>
-    <string name="completar_palabra"></string>
+    <string name="completar_palabra">completar</string>
     
 </resources>
