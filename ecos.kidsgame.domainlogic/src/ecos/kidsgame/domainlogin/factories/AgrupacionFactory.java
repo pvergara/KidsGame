@@ -31,7 +31,7 @@ public class AgrupacionFactory {
 		return gruposSilabas;
 	}
 
-	public List<Agrupacion> createCompleto() {
+	public List<Agrupacion> create() {
 		List<Agrupacion> resultado = new ArrayList<Agrupacion>();
 		for (String consonante : mConsonantes) {
 			Agrupacion agrupacion = new Agrupacion();

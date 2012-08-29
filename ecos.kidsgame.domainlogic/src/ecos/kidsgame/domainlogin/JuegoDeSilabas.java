@@ -13,7 +13,7 @@ public class JuegoDeSilabas {
 	private List<Agrupacion> mAgrupaciones;
 
 	JuegoDeSilabas() {
-		mAgrupaciones = agrupacionFactory.createCompleto();
+		mAgrupaciones = agrupacionFactory.create();
 	}
 
 	public static JuegoDeSilabas getInstancia() {
