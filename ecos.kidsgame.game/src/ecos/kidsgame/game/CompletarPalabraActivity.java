@@ -4,6 +4,7 @@ import java.util.List;
 
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -81,6 +82,8 @@ public class CompletarPalabraActivity extends RoboActivity {
 		mBindingManager.manageOnChangeFor("Palabra", baPalabra, this);
 		mBindingManager.manageOnChangeFor("Silabas", baSilabas, this);
 		mBindingManager.manageOnChangeFor("SilabasActivas", baSilabasActivas, this);
+		mBindingManager.manageOnChangeFor("PalabraIncorrecta", baPalabraIncorrecta, this);
+		mBindingManager.manageOnChangeFor("PalabraCorrecta", baPalabraCorrecta, this);
 		
 		mCompletarPalabraViewModel.init();
 	}
@@ -96,6 +99,23 @@ public class CompletarPalabraActivity extends RoboActivity {
 	private BindingAction baPalabra = new BindingAction() {
 		
 		public void fireAction(Object sourceElementValue) {
+			palabraIncompleta.setTextColor(Color.BLACK);
+			palabraIncompleta.setText((String) sourceElementValue);
+		}
+	};
+
+	private BindingAction baPalabraIncorrecta = new BindingAction() {
+		
+		public void fireAction(Object sourceElementValue) {
+			palabraIncompleta.setTextColor(Color.RED);
+			palabraIncompleta.setText((String) sourceElementValue);
+		}
+	};
+
+	private BindingAction baPalabraCorrecta = new BindingAction() {
+		
+		public void fireAction(Object sourceElementValue) {
+			palabraIncompleta.setTextColor(Color.GREEN);
 			palabraIncompleta.setText((String) sourceElementValue);
 		}
 	};

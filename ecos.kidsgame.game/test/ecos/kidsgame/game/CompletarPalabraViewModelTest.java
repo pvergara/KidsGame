@@ -187,6 +187,17 @@ public class CompletarPalabraViewModelTest {
 	}
 
 	@Test
+	public void alInvocarJugarSILaSilabaESLaCorrectaSeMostraraLaPalabraCompletaHastaQueTermineElMensajeDeAprobacion() {
+		mCompletarPalabrasViewModel.init();
+		mCompletarPalabrasViewModel.iniciar();
+
+		when(appSilabesGameMocked.playCompletar(silaba)).thenReturn(true);
+		mCompletarPalabrasViewModel.jugar(silaba);
+
+		verify(changeListener).onChange("PalabraCorrecta", palabraCompleta);
+	}
+
+	@Test
 	public void alBuscarLaSiguientePalabraACompletarSeConsultaSiLaPruebaHaTerminado() {
 		mCompletarPalabrasViewModel.init();
 		mCompletarPalabrasViewModel.iniciar();

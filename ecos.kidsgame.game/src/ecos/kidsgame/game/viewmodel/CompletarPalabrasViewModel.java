@@ -122,10 +122,15 @@ public class CompletarPalabrasViewModel {
 			actualizarCurrentOnSpeackFinished(mAccionPalabraIncorrecta);
 			speechEngine.speak("Incorrecto. Vuelve a intentarlo.", currentOnSpeakFinished);
 		} else {
+			mostrarPalabraCorrecta(mPalabraCompleta);
 			actualizarCurrentOnSpeackFinished(mOnSpeachSiguientePalabra);
 			speechEngine.speak(String.format("Perfecto. La palabra completa es %s.", mPalabraCompleta),
 					currentOnSpeakFinished);
 		}
+	}
+
+	private void mostrarPalabraCorrecta(String palabraCompleta) {
+		mOnChangeListener.onChange("PalabraCorrecta", palabraCompleta);		
 	}
 
 	private void actualizarCurrentOnSpeackFinished(SpeakFinished mOnSpeachSiguientePalabra2) {
@@ -135,7 +140,8 @@ public class CompletarPalabrasViewModel {
 	private void mostrarPalabraIncorrecta(SilabaDto silabaDto) {
 		String texto = silabaDto.getTexto();
 		mPalabraIncorrecta = mPalabraACompletar;
-		mPalabraIncorrecta = mPalabraIncorrecta.replace("__", texto);
+		//TODO: ahora resulta que sabemos que la palabra incompleta muestra la sílaba que falta con guiones bajos
+		mPalabraIncorrecta = mPalabraIncorrecta.replaceAll("_.", texto);
 		mOnChangeListener.onChange("PalabraIncorrecta", mPalabraIncorrecta);
 	}
 
