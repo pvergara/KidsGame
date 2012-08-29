@@ -110,16 +110,6 @@ public class CurrentSilabesGame implements SilabesGame {
 		return new Silaba(Fonema.desde(silabaDto.getFonema()), Representacion.desde(silabaDto.getTexto()));
 	}
 
-	public List<List<SilabaDto>> getSilabesGroup() {
-		List<List<Silaba>> agrupacionSilabas = JuegoDeSilabas.getInstancia().getAgrupacionDeSilabas();
-		List<List<SilabaDto>> agrupacionSilabasDto = new ArrayList<List<SilabaDto>>();
-		for (List<Silaba> grupoDeSilabas : agrupacionSilabas) {
-			agrupacionSilabasDto.add(generarSilabasDto(grupoDeSilabas));
-		}
-		return agrupacionSilabasDto;
-	}
-
-
 	public List<AgrupacionDto> getGameDataGroups() {
 		List<Agrupacion> agrupaciones = JuegoDeSilabas.getInstancia().getAgrupaciones();
 		List<AgrupacionDto> agrupacionesDto = new ArrayList<AgrupacionDto>();

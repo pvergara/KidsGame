@@ -16,7 +16,6 @@ public interface SilabesGame
 	SilabaDto getSilabaPendiente();
 	Boolean playExplicacion(SilabaDto silabe);
 	Boolean accomplishedEncontrar();
-	List<List<SilabaDto>> getSilabesGroup();
 	void establecerGrupoSilabasSeleccionado(AgrupacionDto agrupacionSilabasDto);
 	String getExplannationJuego();
 	String getExplicacionPruebaCompletarPalabras();

@@ -18,7 +18,6 @@ import ecos.framework.Binding.OnChangeListener;
 import ecos.framework.Speech.SpeechEngine;
 import ecos.kidsgame.appdomain.Game.SilabesGame;
 import ecos.kidsgame.appdomain.Game.Dto.AgrupacionDto;
-import ecos.kidsgame.appdomain.Game.Dto.SilabaDto;
 import ecos.kidsgame.game.viewmodel.StartGameViewModel;
 
 public class StartGameViewModelTest {
@@ -30,10 +29,8 @@ public class StartGameViewModelTest {
 	private BindingManager bindingManagerMocked;
 	private SilabesGame appGameMocked;
 	private OnChangeListener changeListenerMocked;
-	private List<List<SilabaDto>> agrupacionSilabas;
 	private String explicacion ="";
 
-	@SuppressWarnings("unchecked")
 	@Before
 	public void setUp() {
 		startGameViewModel = new StartGameViewModel();
@@ -49,10 +46,7 @@ public class StartGameViewModelTest {
 		when(bindingManagerMocked.getOnChangeListener()).thenReturn(changeListenerMocked);
 		startGameViewModel.bindingManager = (bindingManagerMocked);
 
-		agrupacionSilabas = mock(List.class);
-
 		appGameMocked = mock(SilabesGame.class);
-		when(appGameMocked.getSilabesGroup()).thenReturn(agrupacionSilabas);
 		when(appGameMocked.getExplannationJuego()).thenReturn(explicacion);
 		startGameViewModel.mAppGame = (appGameMocked);
 
@@ -75,17 +69,16 @@ public class StartGameViewModelTest {
 	}
 
 	@Test
-	public void alIniciarSeConsultanLosGruposDeSilabasDelJuego() {
+	public void alIniciarSeConsultanLosGruposDeDatosAsociadosAlJuego() {
 		startGameViewModel.init();
 
-		verify(startGameViewModel.mAppGame).getSilabesGroup();
+		verify(startGameViewModel.mAppGame).getGameDataGroups();
 	}
 
 	@Test
 	public void alIniciarSeNotificaLaModificacionEnLosGruposDeSilabas() {
 		startGameViewModel.init();
 
-//		verify(changeListenerMocked).onChange("agrupacionesTag", agrupaciones);
 		verify(changeListenerMocked).onChange(Mockito.anyString(), Mockito.any(List.class));
 	}
 

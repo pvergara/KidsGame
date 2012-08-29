@@ -37,7 +37,6 @@ public class StartGameViewModel {
 
 	public void init() {
 		speechEngine.tryInit();
-		mAppGame.getSilabesGroup();
 		mAgrupaciones = mAppGame.getGameDataGroups();
 		mChangeListener = bindingManager.getOnChangeListener();
 		mExplicacion = mAppGame.getExplannationJuego();

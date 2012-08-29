@@ -13,7 +13,6 @@ import ecos.kidsgame.domainlogin.Silaba;
 
 public class AgrupacionFactory {
 
-	private List<List<Silaba>> mAgrupacionDeSilabas = new ArrayList<List<Silaba>>();
 	private List<String> mVocales = new ArrayList<String>(Arrays.asList(new String[] { "A", "E", "I", "O", "U" }));
 	private List<String> mConsonantes = new ArrayList<String>(Arrays.asList(new String[] { 
 			"M", "N", "Ñ", "L", "P", 
@@ -22,38 +21,6 @@ public class AgrupacionFactory {
 			"Z", "C", "K", "QU", "J", 
 			"G", "GU", 
 	}));
-
-	public List<List<Silaba>> create() {
-		mAgrupacionDeSilabas.add(generarGrupo("M<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("N<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("Ñ<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("L<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("P<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("S<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("D<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("F<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("T<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("X<vocal>"));
-
-		mAgrupacionDeSilabas.add(generarGrupo("B<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("V<vocal>"));
-
-		mAgrupacionDeSilabas.add(generarGrupo("Y<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("LL<vocal>"));
-
-		mAgrupacionDeSilabas.add(generarGrupo("CH<vocal>"));
-
-		mAgrupacionDeSilabas.add(generarGrupo("Z<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("C<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("K<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("QU<vocal>"));
-
-		mAgrupacionDeSilabas.add(generarGrupo("J<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("G<vocal>"));
-		mAgrupacionDeSilabas.add(generarGrupo("GU<vocal>"));
-
-		return mAgrupacionDeSilabas;
-	}
 
 	private ArrayList<Silaba> generarGrupo(String patron) {
 		ArrayList<Silaba> gruposSilabas = new ArrayList<Silaba>();
@@ -69,13 +36,13 @@ public class AgrupacionFactory {
 		for (String consonante : mConsonantes) {
 			Agrupacion agrupacion = new Agrupacion();
 			agrupacion.setSilabas(generarGrupo(String.format("%s<vocal>", consonante)));
-			agrupacion.setPalabras(getPalabrasConM(String.format("%s", consonante)));
+			agrupacion.setPalabras(getPalabrasCon(String.format("%s", consonante)));
 			resultado.add(agrupacion);
 		}
 		return resultado;
 	}
 
-	private List<Palabra> getPalabrasConM(String consonantes) {
+	private List<Palabra> getPalabrasCon(String consonantes) {
 		if (consonantes.compareTo("M") == 0) {
 			return generarPalabrasConM();
 		}
